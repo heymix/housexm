@@ -1,0 +1,203 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+body,form,div,img,table,a,font,radio,span{
+	margin: 0px;
+	font-size: 12px;
+	color: #1F4A65;
+	padding: 0px;
+	border:0px;
+}
+ul {list-style:none;margin:0px; margin:0px; padding:0px} 
+
+.clear{clear: both;position: relative;left: 0px;}
+.clear5{clear: both;position: relative;left: 0px; height:5px}
+a:link {
+	font-size: 12px;
+	color: #06482a;
+	text-decoration: none;
+
+}
+a:visited {
+	font-size: 12px;
+	color: #06482a;
+	text-decoration: none;
+}
+a:hover {
+	font-size: 12px;
+	color: #FF0000;
+	text-decoration: none;
+}
+a:active {
+	font-size: 12px;
+	color: #FF0000;
+	text-decoration: none;
+}
+.leftMenu{}
+.leftMenu li{margin-top:5px;position: relative;left: 20px;}
+.leftMenu li ul li{
+	margin-top:0px;
+	left: 0px;
+	background-image: url(images/left_line.gif);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+}
+.leftMenu li ul li a{
+	left: 15px;
+	position: relative;
+}
+.leftMenu li img{
+	vertical-align: middle;
+}
+.leftMenu span{
+	font-weight: bold;
+	cursor: pointer;
+	color: #333;
+}
+.leftMenu span img{
+	margin-right:4px;
+}
+.leftMenu li ul li img{
+	margin-right:4px;
+}
+
+#pageNav{
+	vertical-align: middle;
+	text-align: center;
+}
+#pageNav img{
+	vertical-align: middle;
+}
+#showoPage{
+	height:12px; 
+	width:25px;
+	vertical-align: middle;}
+#pageNav a,#pageNav font{vertical-align: middle;}
+.list_table {background-color:#c0de98}
+.list_table img{vertical-align:middle;}
+.list_table tr td{ height:24px; line-height:24px; text-align:center;background:#F3FFE3;vertical-align:middle; cursor:pointer;}/* 默认背景被 */
+.list_table tr th{ height:26px; line-height:26px; text-align:center;  background-image:url(../images/tab_14.gif);background-color:#c0de98;vertical-align:middle;}/* 默认背景 */
+.list_table tr.alt td 	{background:#F2F2F2;}/* 默认隔行背景颜色 */
+.list_table tr.over td {background:#FDF0EE;}/* 鼠标经过时候背景颜色 */
+.list_table tr.checkBgColor td {background:#FDF0EE;}/* 鼠标经过时候背景颜色 */
+.tbTitle {font-weight: bold;  line-height:20px; height:20px; vertical-align:middle;}
+.tdStyle img,.tdStyle input{vertical-align: middle;}
+.tdNavMn{text-align:right;};
+.tdNavMn img,.tdNavMn input{margin-left:5px;margin-right:2px}
+.sList li{
+	clear: both;
+	margin-left: 3px;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #999;
+}
+.slLeft{float:left;}
+.slRight{float:right;}
+.slMiddle{text-align:center;}
+
+
+#editForm{ margin-left:15px; margin-top:10px; z-index:5;}
+#editForm input{
+	vertical-align: middle;
+	border: 1px solid #999
+}
+#editForm img{vertical-align: middle;}
+#editForm label{float: left;width: 80px; height:20px; margin-top:5px; text-align:center; line-height:20px;}
+#editForm input,#editForm select{float: left;width: 180px;border:1px solid #808080; margin-top:5px;}
+#editForm #SCHOOL_ID{width:182px;width:184px\9;}
+#editForm #EXA_ID{width:182px;width:184px\9;}
+#editForm #s_EXA_ID{width:182px;width:184px\9;}
+#editForm #CITY_ID{width:182px;width:184px\9;}
+#editForm #TEST_CATE{width:182px;width:184px\9;}
+#editForm #TEST_ID{width:182px;width:184px\9;}
+#editForm #IS_MAKEUP{width:182px;width:184px\9;}
+#editForm #CHECKED{width:182px;width:184px\9;}
+#editForm #LOCKED{width:182px;width:184px\9;}
+#editForm #TOPIC_ID{width:182px;width:184px\9;}
+#editForm #IS_PASS{width:182px;width:184px\9;}
+#editForm #s_TEST_ID{width:182px;width:184px\9;}
+#editForm .radioType{width: 30px;border: 0px none;vertical-align:middle; margin-left:0px;margin-right:0px; text-align:center;}
+#editForm #IS_MAKEUP_bm{width: 30px;border: 0px none;vertical-align:middle; margin-left:0px;margin-right:0px; text-align:center;}
+#editForm .labeltype{width: 30px;}
+#editForm textarea{width: 250px;height: 150px;}
+#editForm br{clear: left;}
+
+.choiceTest {margin-left: 30px;}
+.choiceTest img{margin-left: 10px;vertical-align:middle;}
+.choiceTest input{vertical-align:middle;width: 180px;border:1px solid #808080;}
+.choiceTest select{vertical-align:middle;width: 180px;border:1px solid #808080;}
+.choiceTest a{vertical-align:middle;line-height:20px;}
+
+.suggestionsMain{position: relative;float:left;z-index: 10;width:500px;height:20px; line-height:20px;}
+.suggestionsMain a{vertical-align:middle;line-height:20px;}
+.suggestionsMain img{vertical-align:middle;}
+.suggestionsBox {
+	position:absolute;
+	top:15px;
+	left: 80px;
+	left: 77px\9;
+	width: 200px;
+	height: 300px;
+	background-color: #FFF;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	border: 2px solid #CCC;
+	color: #333;
+	margin-top: 10px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	display:none;
+	z-index: 999;
+}
+
+.suggestionList {
+	margin: 0px;
+	padding: 0px;
+	width: 200px;
+	height: 300px;
+	overflow:scroll
+}
+
+.suggestionList li {
+	list-style:none;
+	margin: 0px 0px 3px 0px;
+	padding: 3px;
+	cursor: pointer;
+}
+
+.suggestionList li:hover {
+	background-color: #659CD8;
+}
+
+/*以下两个是加载层的样式*/
+.ol_loading {
+	width: 100%;
+	height:31px;
+	background: url( '../../Images/loading.gif' );
+	background-repeat: no-repeat;
+	background-position: center center;
+	display:none;
+	position:absolute;
+	top:40%;
+	left:0px;
+}
+.ol_loading_mask{
+	height:100%;
+	width:100%;
+	position:absolute;
+	top:0px;
+	left:0px;
+	background-color: #fff;
+	opacity: 0.6;
+	filter: alpha(opacity = 60);
+	display:none;
+}
+
+.helpTitle {
+	font-family: "黑体";
+	font-size: 18px;
+	font-weight: bold;
+	color: #063;
+	}
+#choiceTestForm #TEST_ID{ width:350px}

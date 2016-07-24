@@ -1,0 +1,29 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+/* from样式重载 */
+#editForm label{margin-top:15px;}
+#editForm input{width: 360px; margin-top:15px;}
+#editForm select{margin-top:15px;}
+#editForm  .textarea_editor{width:660px;height:350px;visibility:hidden;margin-top:15px;}
+#editForm .radioType{margin-top:18px;margin-top:15px\9;}
+#editForm #REAL_NAME{width:100px}
+#editForm #EDUCATION{width:100px}
+#editForm #GENDER{width:80px}
+#editForm #AGE{width:80px}
+#editForm #GRADUATE_DATE{width:160px}
+#editForm #PRO{width:160px}
+#editForm #USER_ID{width:160px}
+#editForm #SCHOOL_ID_DESC{width:260px}
+#editForm #TEL{width:160px}
+#editForm #TEL_DESC{width:260px}
+#editForm #MOBILE{width:160px}
+#editForm #MOBILE_BAK{width:160px}
+#editForm #MOBILE_DESC{width:280px}
+#editForm #GRADUATE_SCHOOL{width:200px;}
+.editFormLeft{ width:300px; position:relative; float:left;}
+.editFormRight{width:200px; position:relative; float:left;}
+.editFormPhoto{border: 4px solid #f4f2f2; position:relative; float:right; width:108px;; height:151px}
+#editForm #MOBILE1{width:160px}
+#editForm #EMAIL{width:160px}
+#editForm #CHECKED{width:50px}

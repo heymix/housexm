@@ -1,0 +1,105 @@
+@charset "utf-8";
+/* CSS Document */
+
+body,form,div,img,table,a,font,radio,span,h1,h2,h3,h4{
+	margin: 0px;
+	font-size: 24px;
+	color: #1F4A65;
+	padding: 0px;
+	border: 0px;
+	font-family: "仿宋_GB2312";
+}
+.clearLine{
+	line-height: 30px;
+	clear: both;
+}
+.clearPage{
+	line-height: 1px;
+	clear: both;
+	page-break-after:always;
+}
+
+#container{
+	position: relative;
+	width: 297mm;
+	clear: both;
+	float: left;
+	height: 210mm;
+}
+#p_name{
+	position: absolute;
+	top: 365px;
+	left: 305px;
+	font-weight: bold;
+	}
+
+#gender{
+	position:absolute;
+	top:365px;
+	left:470px;
+	font-weight: bold;
+	}
+
+#year{
+	position:absolute;
+	top:365px;
+	left:580px;
+	}
+
+#idcard{
+	position:absolute;
+	top:590px;
+	left:455px;
+	font-weight: bold;
+	}
+
+#crsno{
+	position:absolute;
+	top:640px;
+	left:455px;
+	
+	}
+
+#gs{
+	position:absolute;
+	top:290px;
+	left:1100px;;
+	}
+#gxl{
+	position:absolute;
+	top:335px;
+	left:1100px;
+	}
+#gfg{
+	position:absolute;
+	top:380px;
+	left:1100px;
+	}
+#gxy{
+	position:absolute;
+	top:435px;
+	left:1100px;
+	}
+#jsj{
+	position:absolute;
+	top:485px;
+	left:1100px;
+	}
+
+#c_year{
+	position:absolute;
+	top:640px;
+	left:900px;
+	}
+
+#c_month{
+	position:absolute;
+	top:640px;
+	left:990px;
+	}
+
+#c_day{
+	position:absolute;
+	top:640px;
+	left:1050px;
+	}

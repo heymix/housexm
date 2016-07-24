@@ -1,0 +1,96 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+body,form,div,img,table,a,font,radio,span,h1,h2,h3,h4{
+	margin: 0px;
+	font-size: 24px;
+	color: #1F4A65;
+	padding: 0px;
+	border: 0px;
+	font-family: "仿宋_GB2312";
+	font-weight:bold; 
+}
+.clearLine{
+	line-height: 30px;
+	clear: both;
+}
+.clearPage{
+	line-height: 1px;
+	clear: both;
+	page-break-after:always;
+}
+
+#container{
+	position: relative;
+	width: 305mm;
+	clear: both;
+	float: left;
+	height: 192mm;
+}
+#p_name{
+	position: absolute;
+	top: 240px;
+	left: 300px;
+	font-weight: 900;
+	}
+
+#year_start{
+	position:absolute;
+	top:240px;
+	left:660px;
+	font-weight: bold;
+	}
+
+#month_start{
+	position:absolute;
+	top:240px;
+	left:820px;
+	font-weight: bold;
+	}
+
+#year_end{
+	position:absolute;
+	top:320px;
+	left:270px;
+	font-weight: bold;
+	}
+#month_end{
+	position:absolute;
+	top:320px;
+	left:410px;
+	font-weight: bold;
+	}
+#crsno{
+	position:absolute;
+	top:570px;
+	left:250px;
+	font-weight: bold;
+	}
+
+#c_school{
+	position:absolute;
+	top:320px;
+	left:640px;
+	font-weight: bold;
+	}
+
+#c_year{
+	position:absolute;
+	top:675px;
+	left:800px;
+	font-weight: bold;
+	}
+
+#c_month{
+	position:absolute;
+	top:675px;
+	left:920px;
+	font-weight: bold;
+	}
+
+#c_day{
+	position:absolute;
+	top:675px;
+	left:1010px;
+	font-weight: bold;
+	}

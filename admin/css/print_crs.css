@@ -1,0 +1,114 @@
+@charset "utf-8";
+/* CSS Document */
+
+body,form,div,img,table,a,font,radio,span,h1,h2,h3,h4{
+	margin: 0px;
+	font-size: 24px;
+	color: #1F4A65;
+	padding: 0px;
+	border: 0px;
+	font-family: "仿宋_GB2312";
+}
+.clearLine{
+	line-height: 30px;
+	clear: both;
+}
+.clearPage{
+	line-height: 1px;
+	clear: both;
+	page-break-after:always;
+}
+
+#container{
+	position: relative;
+	width: 305mm;
+	clear: both;
+	float: left;
+	height: 192mm;
+}
+#p_name{
+	position: absolute;
+	top: 345px;
+	left: 285px;
+	font-weight: bold;
+	}
+
+#gender{
+	position:absolute;
+	top:345px;
+	left:450px;
+	font-weight: bold;
+	}
+
+#year{
+	position:absolute;
+	top:345px;
+	left:560px;
+	font-weight: bold;
+	}
+
+#idcard{
+	position:absolute;
+	top:560px;
+	left:415px;
+	font-weight: bold;
+	}
+
+#crsno{
+	position:absolute;
+	top:610px;
+	left:415px;
+	font-weight: bold;
+	}
+
+#gs{
+	position:absolute;
+	top:270px;
+	left:1050px;
+	font-weight: bold;
+	}
+#gxl{
+	position:absolute;
+	top:315px;
+	left:1050px;
+	font-weight: bold;
+	}
+#gfg{
+	position:absolute;
+	top:360px;
+	left:1050px;
+	font-weight: bold;
+	}
+#gxy{
+	position:absolute;
+	top:415px;
+	left:1050px;
+	font-weight: bold;
+	}
+#jsj{
+	position:absolute;
+	top:465px;
+	left:1030px;
+	font-weight: bold;
+	}
+
+#c_year{
+	position:absolute;
+	top:605px;
+	left:860px;
+	font-weight: bold;
+	}
+
+#c_month{
+	position:absolute;
+	top:605px;
+	left:940px;
+	font-weight: bold;
+	}
+
+#c_day{
+	position:absolute;
+	top:605px;
+	left:1000px;
+	font-weight: bold;
+	}
