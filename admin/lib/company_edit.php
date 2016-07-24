@@ -32,9 +32,9 @@ if ($action==="save"){
     }
 }
 if($action==="edit"){
-    $query = "update t_company set `simple_name`='$simpleName',`contact`='$contact',`tel`='$tel',`remark`='$remark',update_time=now(),update_user='$operateUser' where id=$id";
+    $query = "update t_company set `name`='$name',simple_name`='$simpleName',`contact`='$contact',`tel`='$tel',`remark`='$remark',update_time=now(),update_user='$operateUser' where id=$id";
     mysql_query($query,$con);
-    echo "1|修改成功！".$query;
+    echo "1|修改成功！";
 }
 if($action==="del"){
     $idArr="";
@@ -47,7 +47,7 @@ if($action==="del"){
     }
     $query="update t_company set is_del='1',update_time=now(),update_user='$operateUser' where id in($idArr)";
     mysql_query($query,$con);
-    echo "1|删除成功！".$query;
+    echo "1|删除成功！";
 }
 
  mysql_close($con);

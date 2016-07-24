@@ -7,17 +7,16 @@ if ($action=="edit"){
  $id=$_GET["id"];    
     if(is_numeric($id)){
         
-        $Query = "select * from t_project where is_del=0 and id=$id";
+        $Query = "select * from t_client where is_del=0 and id=$id";
         $result     = mysql_query($Query);
         $rs     = mysql_fetch_array($result);
         if(!$rs){die("0|Valid result!"); mysql_close($con);}
-        $houseType = $rs["hosueType"];
+        $projectId = $rs["project_id"];
         $name = $rs["name"];
-        $simpleName = $rs["simple_name"];
-        $address =$rs["address"];
-        $contact =$rs["contact"];
         $tel =$rs["tel"];
-        $remark =$rs["remark"];     
+        var_dump($Query);
+
+        var_dump($rs);
     }else{
         echo "错误:入参非法";
         return false;
@@ -76,7 +75,11 @@ $(document).ready(function(){
   <div data-role="content">
   <p id="errMsg" style="color:#F00"></p>
   	<form id="editForm" name="editForm"  method="post" >
-  	项目: <select  name="project" id="project">
+  	<?php if($action=='edit'){
+  	echo "<input id='project' name='project' type='hidden' value='$projectId'>";
+  	}
+  	    ?>
+  	项目: <select <?php if($action=='edit') echo "disabled";?>  name="project" id="project">
   	      <?php 
         	$q = "select * from t_project order by id desc";                   //SQL查询语句
         	mysql_query($char_set);
@@ -86,7 +89,7 @@ $(document).ready(function(){
         	
         	$i=0;
         	while($row = mysql_fetch_array($rs)) {
-        	    if($row['id']==$companyId){
+        	    if($row['id']==$projectId){
         	        $selected="selected";
         	    }else{
         	        $selected="";
@@ -95,9 +98,10 @@ $(document).ready(function(){
         	}
         	?>
   </select>
+  <input id="id" name="id" value="<?php echo $id?>" type=hidden>
   <input id="action" name="action" value="<?php echo $action?>" type=hidden>
-	姓名: <input type="text" name="name" id="name" />
-	电话: <input type="text" name="tel" id="tel" />
+	姓名: <input type="text" name="name" id="name" value="<?php echo $name;?>"/>
+	电话: <input type="text" name="tel" id="tel" value="<?php echo $tel;?>" />
     <a href="#" data-role="button" onClick="submitForm();"><img src="../images/add.gif">保存</a>
 	</form>
   </div>
