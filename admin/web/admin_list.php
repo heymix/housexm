@@ -190,7 +190,7 @@ function delPost(id,type){
 			return false;
 		}
 		loading.show();
-		$.post(	"../lib/company_edit.php", 
+		$.post(	"../lib/admin_edit.php", 
 				$("#listForm").serialize(), 
 				function(data,st){
 						

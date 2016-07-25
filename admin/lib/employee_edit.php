@@ -53,7 +53,7 @@ if($action==="del"){
            $idArr.=",$v";
            }
     }
-    $query="update t_empoyee set is_del='1',update_time=now(),update_user='$operateUser' where id in($idArr)";
+    $query="update t_employee set is_del='1',update_time=now(),update_user='$operateUser' where id in($idArr)";
     mysql_query($query,$con);
     echo "1|删除成功！";
 }

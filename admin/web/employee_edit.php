@@ -161,7 +161,7 @@ if ($action=="edit"){
 <label style="width:120px"><span></span> 公司：</label>
 <select id="companyId" name="companyId">
 	<?php 
-	$q = "select * from t_company order by pinyin_name asc";                   //SQL查询语句
+	$q = "select * from t_company where is_del=0 order by pinyin_name asc";                   //SQL查询语句
 	mysql_query($char_set);
 	$rs = mysql_query($q, $con);                     //获取数据集
 	//echo $q;
