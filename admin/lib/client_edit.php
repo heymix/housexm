@@ -54,10 +54,19 @@ if($action==="edit"){
     if($endPriceTime!=''){
         $updateSql.=",`end_price_time`='$endPriceTime'";
     }
+    if(is_numeric($housePrice)){
+        $updateSql.=",`house_price`='$housePrice'";
+    }
+    if(is_numeric($price)){
+        $updateSql.=",`price`='$price'";
+    }
+    
+     if(is_numeric($area)){
+        $updateSql.=",`area`='$area'";
+    }
+    
     $query = "update t_client set `check_status`='$checkStatus',
-                `check_time`='$checkTime',`check_status`='$checkStatus',
-                `house_price`='$housePrice',`area`='$area',
-                `num`='$num',`price`='$price',
+                `num`='$num',
                 `price_status`='$priceStatus',
                 `remark`='$remark',update_time=now(),update_user='$operateUser' $updateSql where id=$id";
     mysql_query($query,$con);
