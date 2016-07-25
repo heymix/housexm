@@ -47,12 +47,19 @@ $price = $_POST["price"];
 $priceStatus = $_POST["priceStatus"];
 $endPriceTime = $_POST["endPriceTime"];
 if($action==="edit"){
-    $query = "update t_client set `check_time`='$checkTime',`check_status`='$checkStatus',
+    $updateSql="";
+    if($checkTime!=''){
+        $updateSql.=",`check_time`='$checkTime'";
+    }
+    if($endPriceTime!=''){
+        $updateSql.=",`end_price_time`='$endPriceTime'";
+    }
+    $query = "update t_client set `check_status`='$checkStatus',
                 `check_time`='$checkTime',`check_status`='$checkStatus',
                 `house_price`='$housePrice',`area`='$area',
                 `num`='$num',`price`='$price',
-                `price_status`='$priceStatus',`end_price_time`='$endPriceTime',
-                `remark`='$remark',update_time=now(),update_user='$operateUser' where id=$id";
+                `price_status`='$priceStatus',
+                `remark`='$remark',update_time=now(),update_user='$operateUser' $updateSql where id=$id";
     mysql_query($query,$con);
     echo "1|修改成功！";
 }
