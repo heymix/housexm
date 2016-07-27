@@ -8,13 +8,14 @@ $num = $_POST["num"];
 $price = $_POST["price"];
 $priceStatus = $_POST["priceStatus"];
 $endPriceTime = $_POST["endPriceTime"];
-
+ 
 $remark=$_POST["remark"];
 $action=$_POST["action"];
 $id=$_POST["id"];
 $subBox=$_POST["subBox"];
 
 $operateUser=$_SESSION["userId"];
+
 
 //echo $action;
 //echo $db_name;
