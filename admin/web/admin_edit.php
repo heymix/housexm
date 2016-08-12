@@ -153,7 +153,7 @@ if ($action=="edit"){
 <select id="companyId" name="companyId">
 	<?php 
 	echo"<option value='-1' ".$selected.">系统管理员</option>\n";
-	$q = "select * from t_company order by pinyin_name asc";                   //SQL查询语句
+	$q = "select * from t_company where is_del=0  order by pinyin_name asc";                   //SQL查询语句
 	mysql_query($char_set);
 	$rs = mysql_query($q, $con);                     //获取数据集
 	//echo $q;
