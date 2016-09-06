@@ -5,7 +5,8 @@ $trueName=$_GET['trueName'];
 $companyName=$_GET['companyName'];
 $companyName=$_GET['address'];
 $tel=$_GET['tel'];
-$remark=$_GET['remark'];
+$parentName=$_GET['parentName'];
+$wechat=$_GET['wechat'];
 $userId=$_GET['userId'];
 
 $Page_size = 10;
@@ -33,8 +34,12 @@ if($companyName!=""){
 if($tel!=""){
     $sqlKey .= " and e.`tel` like '%$tel%'";
 }
-if($remark!=""){
-    $sqlKey .= " and e.`remark` like '%$remark%'";
+if($wechat!=""){
+    $sqlKey .= " and e.`wechat` like '%$wechat%'";
+}
+
+if($parentName!=""){
+    $sqlKey .= " and ep.`name` like '%parentName%'";
 }
 
 if($userId!=""){
@@ -42,7 +47,9 @@ if($userId!=""){
 }
 
 
-$Query = "Select count(*) as c from t_employee where is_del=0 $sqlKey";
+$Query = "Select count(*) as c from t_employee e left join t_company c on e.company_id=c.id 
+            where e.is_del=0 $sqlKey";
+
 $result     = mysql_query($Query);
 $rs     = mysql_fetch_array( $result );
 $count = $rs["c"]; //条数
@@ -63,7 +70,9 @@ if (empty($_GET['page']) || $_GET['page'] < 0) {
 }
 
 $offset = $Page_size * ($page - 1);
-$sql = "select e.*,c.name as company_name from t_employee e left join t_company c on e.company_id=c.id 
+$sql = "select e.*,c.name as company_name,ep.true_name as parent_name from t_employee e 
+            left join t_company c on e.company_id=c.id 
+            left join t_employee ep on e.parent_id=ep.id
             where e.is_del=0 $sqlKey order by e.id desc limit $offset,$Page_size";
 $result = mysql_query($sql);
 $content="";
@@ -74,12 +83,19 @@ $content.="    <td height='18' ><div align='center' >\n";
 $content.="    <input name='subBox[]' type='checkbox' value='".$row['id']."' />\n";
 $content.="    </div></td>\n";
 $content.="    <td height='18' ><span class='tdStyle'>".$row['id']."</span></td>\n";
+if ($row['parent_id']<>0){
+    $parentNameStr=$row['parent_name']."(".$row['parent_id'].")";
+}else{
+    $parentNameStr="";
+}
+$content.="    <td height='18' >".$parentNameStr."</td>\n";
 $content.="    <td height='18' >".$row['user_name']."</td>\n";
 $content.="    <td height='18' >".$row['true_name']."</td>\n";
 $content.="    <td height='18' >".$row['sex']."</td>\n";
 $content.="    <td height='18' >".$row['user_id']."</td>\n";
 $content.="    <td height='18' >".$row['company_name']."</td>\n";
 $content.="    <td height='18' >".$row['tel']."</td>\n";
+$content.="    <td height='18' >".$row['wechat']."</td>\n";
 $content.="    <td height='18' >".$row['remark']."</td>\n";
 $content.="    <td height='18'><img src='../images/edit.gif'>[<a href=\"employee_edit.php?id=".$row['id']."&action=edit\">编辑</a>]</td>";
 $content.="</tr>\n";
@@ -242,9 +258,12 @@ function delPost(id,type){
         <label style="width:120px"><span ></span> 用户名：</label><input type="text" id="userName" name="userName" style="width:200px" value="<?php echo $userName?>"> 
         	<label style="width:120px"><span ></span> 姓名：</label><input type="text" id="trueName" name="trueName" style="width:200px" value="<?php echo $trueName?>"> 
         	<label style="width:120px"><span ></span> 身份证：</label><input type="text" id="userId" name="userId" style="width:200px" value="<?php echo $userId?>">  <br>
-        	<label style="width:120px"><span ></span> 公司：</label><input type="text" id="companyName" name="companyName" style="width:200px" value="<?php echo $companyName?>">
+        	<label style="width:120px"><span ></span> 独立/渠道：</label><input type="text" id="companyName" name="companyName" style="width:200px" value="<?php echo $companyName?>">
         	<label style="width:120px"><span ></span> 电话：</label><input type="text" id="tel" name="tel" style="width:200px" value="<?php echo $tel?>">
-        	<label style="width:120px"><span ></span> 备注：</label><input type="text" id="remark" name="remark" style="width:200px" value="<?php echo $remark?>"> <img src="../images/g_page.gif" width="14" height="14" /> 
+        	<label style="width:120px"><span ></span> 推荐人：</label><input type="text" id="parentName" name="parentName" style="width:200px" value="<?php echo $parentName?>"><br> 
+        	<label style="width:120px"><span ></span> 微信号：</label><input type="text" id="wechat" name="wechat" style="width:200px" value="<?php echo $wechat?>">
+        	
+        	<img src="../images/g_page.gif" width="14" height="14" /> 
         <a href="javascript:void(0)" onClick="searchPost();">查询</a></form></td>
         <td width="9" background="../images/tab_16.gif">&nbsp;</td>
       </tr>
@@ -289,16 +308,18 @@ function delPost(id,type){
     		<input id="action" name="action" value="del" type="hidden">
           <table class="list_table" width="99%" border="0" align="center" cellpadding="0" cellspacing="1">
             <tbody><tr class="alt">
-              <th width="5%" height="26">选择</th>
-              <th width="10%" height="26">编号</th>
-              <th width="10%" height="26">用户名</th>
-              <th width="10%" height="26">姓名</th>
-              <th width="10%" height="26">性别</th>
-              <th width="15%" height="26">身份证号</th>
-              <th width="15%" height="26">公司名</th>
-              <th width="10%" height="26">电话</th>
-              <th width="10%" height="26">备注</th>
-              <th width="5%" height="26">操作</th>
+              <th  height="26">选择</th>
+              <th  height="26">编号</th>
+              <th  height="26">推荐人(编号)</th>
+              <th  height="26">用户名</th>
+              <th  height="26">姓名</th>
+              <th  height="26">性别</th>
+              <th  height="26">身份证号</th>
+              <th  height="26">独立/渠道(公司名)</th>
+              <th  height="26">电话</th>
+              <th  height="26">微信号</th>
+              <th  height="26">备注</th>
+              <th  height="26">操作</th>
               </tr>
            
        <?php echo $content?>

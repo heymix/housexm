@@ -197,7 +197,7 @@ mysql_close($con);
           <input id="checkAll" type="checkbox" name="checkbox62" value="checkbox" onblur="selectAll(this);">
           全选
           <input id="inverse" type="checkbox" name="inverse" value="checkbox">
-          反选 <img src="../images/083.gif" width="14" height="14"><font><a href="javascript:void(0)" onclick="delPost('-1','multi');">删除选中</a></font> </td>
+          反选  </td>
         <td width="14"><img src="../images/tab_07.gif" width="14" height="30"></td>
       </tr>
     </tbody></table></td>

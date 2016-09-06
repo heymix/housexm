@@ -62,24 +62,31 @@ if (empty($_GET['page']) || $_GET['page'] < 0) {
 }
 
 $offset = $Page_size * ($page - 1);
-$sql = "select p.*,d.name as hosue_type_name from t_project p left join t_dictionary d on p.house_type=d.value and d.type='house_type' 
+$sql = "select p.*,d.name as property_rights_name from t_project p left join t_dictionary d on p.house_type=d.value and d.type='property_rights' 
             where p.is_del=0 $sqlKey order by d.id desc limit $offset,$Page_size";
 //echo $sql;
 $result = mysql_query($sql);
 $content="";
 while ($row = mysql_fetch_array($result)) {
-
 $content.="<tr>\n";
 $content.="    <td height='18' ><div align='center' >\n";
 $content.="    <input name='subBox[]' type='checkbox' value='".$row['id']."' />\n";
 $content.="    </div></td>\n";
-$content.="    <td height='18' ><span class='tdStyle'>".$row['id']."</span></td>\n";
+$content.="    <td height='18' >".$row['seller']."</td>\n";
 $content.="    <td height='18' >".$row['name']."</td>\n";
-$content.="    <td height='18' >".$row['simple_name']."</td>\n";
 $content.="    <td height='18' >".$row['address']."</td>\n";
-$content.="    <td height='18' >".$row['hosue_type_name']."</td>\n";
-$content.="    <td height='18' >".$row['contact']."</td>\n";
+$content.="    <td height='18' >".$row['area_min']."-".$row['area_max']."</td>\n";
+$content.="    <td height='18' >".$row['property_rights_name']."</td>\n";
+$content.="    <td height='18' >".$row['property_year']."</td>\n";
+$content.="    <td height='18' >".$row['average_price']."</td>\n";
 $content.="    <td height='18' >".$row['tel']."</td>\n";
+$content.="    <td height='18' >".$row['developers']."</td>\n";
+$content.="    <td height='18' >".$row['total_area']."</td>\n";
+$content.="    <td height='18' >".$row['total_house']."</td>\n";
+$content.="    <td height='18' >".$row['sell_num']."</td>\n";
+$content.="    <td height='18' >".$row['num']."</td>\n";
+$content.="    <td height='18' >".$row['middle_school']."</td>\n";
+$content.="    <td height='18' >".$row['primary_school']."</td>\n";
 $content.="    <td height='18' >".$row['remark']."</td>\n";
 $content.="    <td height='18'><img src='../images/edit.gif'>[<a href=\"project_edit.php?id=".$row['id']."&action=edit\">编辑</a>]</td>";
 $content.="</tr>\n";
@@ -312,18 +319,25 @@ function delPost(id,type){
     		<input id="action" name="action" value="del" type="hidden">
           <table class="list_table" width="99%" border="0" align="center" cellpadding="0" cellspacing="1">
             <tbody><tr class="alt">
-              <th width="5%" height="26">选择</th>
-              <th width="10%" height="26">编号</th>
-              <th width="10%" height="26">项目名称</th>
-              <th width="10%" height="26">简称</th>
-              <th width="10%" height="26">地址</th>
-              <th width="15%" height="26">类型</th>
-              <th width="15%" height="26">联系人</th>
-              <th width="10%" height="26">电话</th>
-              <th width="10%" height="26">备注</th>
-              <th width="5%" height="26">操作</th>
+              <th height="26">选择</th>
+              <th  height="26">置业顾问</th>
+              <th  height="26">项目名称</th>
+              <th  height="26">项目地址</th>
+              <th  height="26">面积区间</th>
+              <th  height="26">权属性质</th>
+              <th  height="26">产权年限</th>
+              <th  height="26">均价</th>
+              <th  height="26">售楼处电话</th>
+              <th  height="26">开发商</th>
+              <th  height="26">总面积</th>
+              <th  height="26">总套数</th>
+              <th  height="26">已销量</th>
+              <th  height="26">库存量</th>
+              <th  height="26">所属中学</th>
+              <th  height="26">小学</th>
+              <th  height="26">备注</th>
+              <th  height="26">操作</th>
               </tr>
-           
        <?php echo $content?>
             
           </tbody></table>

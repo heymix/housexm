@@ -63,6 +63,7 @@ $content="";
 while ($row = mysql_fetch_array($result)) {
 $content.="<tr>\n";
 $content.="<th>".$row['project_name']."</th>\n";
+
 $content.="<td>".$row['price']."(".$row['price_status_name'].")</td>\n";
 if(!empty($row['end_price_time'])){
     $end_price_time=date("Y-m-d",strtotime($row['end_price_time']));
@@ -70,9 +71,24 @@ if(!empty($row['end_price_time'])){
     $end_price_time="";
 }
 $content.="<td>".$end_price_time."</td>\n";
+if(empty($row['visit_date'])){
+    $visit_date="<a href='#' onclick='popOpen(\"".$row['id']."\");'>填加日期</a>";
+}else{
+    $visit_date=date("Y-m-d",strtotime($row['visit_date']));
+}
+
+$content.="<td>".$visit_date."</td>\n";
 $content.="<td>".$row['name']."(".$row['id'].")</td>\n";
 $content.="<td>".$row['tel']."</td>\n";
-$content.="    <td ><a data-role=\"button\"  href=\"#\" onclick=\"window.location.href='client_edit.php?id=".$row['id']."&action=edit'\">编辑</a></td>";
+$editBtnStr="";
+if($row["check_status"]==1){
+    $editBtnStr="已签约";
+}else{
+    $editBtnStr="<a data-role=\"button\"  href=\"#\" onclick=\"window.location.href='client_edit.php?id=".$row['id']."&action=edit'\">编辑</a>";
+}
+
+
+$content.="    <td >$editBtnStr</td>";
 $content.="</tr>\n";
 
 
@@ -141,6 +157,32 @@ $(document).ready(function(){
 	function searchPost(){
 		window.location.href="?1=1&"+$("#searchForm").serialize();	
 	}
+
+function submitForm(){
+	//alert("ddd");
+	
+	
+	if($("#visitDate").val().length==0){
+		$("#errMsg").html('日期不能为空！');
+		return false;
+	}
+
+    $("#errMsg").html('正在提交请稍后....！');
+
+	$.post(	"../lib/client_edit.php", 
+		$("#editForm").serialize(), 
+		function(data,st){
+			var resultArr=data.split("|");
+			$("#errMsg").html(resultArr[1]);
+			$("#myPopup").popup('close');
+			window.location.reload();
+		});
+}
+function popOpen(id){
+	$("#errMsg").html('');
+	$("#id").val(id);
+	$("#myPopup").popup('open');
+}
 </script>
 <body>
 <script>
@@ -183,6 +225,7 @@ $(document).ready(function(){
          <th data-priority="2">项目名称</th>
          <th data-priority="2">佣金(状态)</th>
          <th data-priority="3">结佣日期</th>
+         <th data-priority="3">来访日期</th>
          <th data-priority="3"><abbr title="Rotten Tomato Rating">客户姓名(编号)</abbr></th>
          <th data-priority="5">客户电话</th>
          <th data-priority="2">操作</th>
@@ -194,7 +237,18 @@ $(document).ready(function(){
    </table>
     <?php echo $key;?>
   </div>
-
+ <div data-role="popup" id="myPopup" class="ui-content">
+      <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">X</a>
+       <form id="editForm" name="editForm"  method="post" >
+       <p id="errMsg" style="color:#F00"></p>    
+       <p> <label for="bday">来访日期：</label>
+       <input type="hidden" value="visit" name="action" id="action">
+       <input type="hidden"  name="id" id="id">
+        <input type="date" name="visitDate" id="visitDate"></p>
+        <a href="#" data-role="button" onClick="submitForm();"><img src="../images/add.gif">保存</a>
+        <a href="#" data-rel="back" data-role="button" ><img src="../images/delete.gif">关闭</a>
+    </form>
+    </div>
 <?php include 'footer.php';?>
 </div> 
 

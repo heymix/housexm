@@ -227,35 +227,11 @@ function searchPost(){
 	window.location.href="?1=1&"+$("#searchForm").serialize();	
 }
 
- 
-function delPost(id,type){
-
-	if(!confirm("确认删除数据吗? 不可恢复...")) return false;
-
-	if(type=="multi"){
-		var n = $("#listForm input:checked").length;
-		if (n == 0) {
-			alert("未选择数据,无法操作！");
-			return false;
-		}
-		loading.show();
-		$.post(	"../lib/client_edit.php", 
-				$("#listForm").serialize(), 
-				function(data,st){
-						
-						var resultArr=data.split("|");
-						if(resultArr[0]=="1"){
-							alert(resultArr[1]);
-							window.location.reload();
-						}
-						else{
-							alert(resultArr[1]);
-							loading.hide();
-						}	
-				});
-		
-	}	
+function exportExcel(){
+	if(!confirm("确认导出数据吗？")) return false;
+	window.location.href="company_report_export.php?1=1&"+$("#searchForm").serialize();
 }
+
 </script>
 
 
@@ -331,11 +307,7 @@ function delPost(id,type){
       <tbody><tr>
         <td width="15" height="30"><img src="../images/tab_03.gif" width="15" height="30"></td>
         <td width="275" background="../images/tab_05.gif" class="tdStyle"><img src="../images/311.gif" width="16" height="16"> <span class="tbTitle">公司列表</span></td>
-        <td background="../images/tab_05.gif" class="tdStyle tdNavMn"><?php if($_SESSION["companyId"]==0){?><a href="javascript:void(0)" onclick="window.location.reload();"><img src="../images/refresh.gif" width="16" height="16"></a>
-          <input id="checkAll" type="checkbox" name="checkbox62" value="checkbox" onblur="selectAll(this);">
-          全选
-          <input id="inverse" type="checkbox" name="inverse" value="checkbox">
-          反选  <img src="../images/083.gif" width="14" height="14"><font><a href="javascript:void(0)" onclick="delPost('-1','multi');">删除选中</a></font><?php }?> </td>
+        <td background="../images/tab_05.gif" class="tdStyle tdNavMn"><img src="../images/excel.gif" alt="导出" /><a href="#" onclick="exportExcel();">导出excel</a></td>
         <td width="14"><img src="../images/tab_07.gif" width="14" height="30"></td>
       </tr>
     </tbody></table></td>

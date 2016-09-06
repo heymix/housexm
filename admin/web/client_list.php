@@ -116,7 +116,7 @@ left join t_project as p on t.project_id=p.id
 left join t_employee as e on t.employee_id=e.id 
 left join t_company as c on e.company_id=c.id
 left join t_dictionary as d_ps on t.price_status=d_ps.value and d_ps.type='price_status'
-left join t_dictionary as d_checks on t.price_status=d_checks.value and d_checks.type='check_status'
+left join t_dictionary as d_checks on t.check_status=d_checks.value and d_checks.type='check_status'
             where t.is_del=0 $sqlKey order by t.id desc limit $offset,$Page_size";
 //echo $sql;
 $result = mysql_query($sql);

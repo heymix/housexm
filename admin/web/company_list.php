@@ -66,7 +66,6 @@ $content.="<tr>\n";
 $content.="    <td height='18' ><div align='center' >\n";
 $content.="    <input name='subBox[]' type='checkbox' value='".$row['id']."' />\n";
 $content.="    </div></td>\n";
-$content.="    <td height='18' ><span class='tdStyle'>".$row['id']."</span></td>\n";
 $content.="    <td height='18' >".$row['name']."</td>\n";
 $content.="    <td height='18' >".$row['simple_name']."</td>\n";
 $content.="    <td height='18' >".$row['contact']."</td>\n";
@@ -280,7 +279,6 @@ function delPost(id,type){
           <table class="list_table" width="99%" border="0" align="center" cellpadding="0" cellspacing="1">
             <tbody><tr class="alt">
               <th width="12%" height="26">选择</th>
-              <th width="12%" height="26">编号</th>
               <th width="16%" height="26">名称</th>
               <th width="12%" height="26">简称</th>
               <th width="12%" height="26">联系人</th>

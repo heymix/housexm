@@ -14,7 +14,7 @@ if ($action=="edit"){
             left join t_employee as e on t.employee_id=e.id 
             left join t_company as c on e.company_id=c.id
             left join t_dictionary as d_ps on t.price_status=d_ps.value and d_ps.type='price_status'
-            left join t_dictionary as d_checks on t.price_status=d_checks.value and d_checks.type='check_status'
+            left join t_dictionary as d_checks on t.check_status=d_checks.value and d_checks.type='check_status'
                         where t.is_del=0 and t.id=$id";
         $result     = mysql_query($Query);
         $row     = mysql_fetch_array($result);
@@ -33,7 +33,8 @@ if ($action=="edit"){
         $num=$row['num'];
         $price=$row['price'];
         $priceStatus=$row['price_status'];
-        $endPriceTime.=$row['end_price_time'];
+        $endPriceTime=$row['end_price_time'];
+        $visitDate=$row['visit_date'];
         $remark=$row['remark'];
  
     }else{
@@ -67,8 +68,9 @@ if ($action=="edit"){
 
  $(document).ready(function(e) {
 	$(function() {
-		$( "#checkTime" ).datepicker();
-		$( "#endPriceTime" ).datepicker();
+		$("#checkTime" ).datepicker();
+		$("#endPriceTime" ).datepicker();
+		$("#visitDate" ).datepicker();
 		
 	});
 		//table 颜色   
@@ -207,7 +209,7 @@ if ($action=="edit"){
 </select></br>
 
 <label style="width:120px"><span></span> 结佣时间：</label><input type="text" id="endPriceTime" name="endPriceTime"   style="width:200px" value="<?php if(!empty($endPriceTime)) echo date("Y-m-d",strtotime($endPriceTime));?>"></br>
-
+<label style="width:120px"><span></span> 来访时间：</label><input type="text" id="visitDate" name="visitDate"   style="width:200px" value="<?php if(!empty($visitDate)) echo date("Y-m-d",strtotime($visitDate));?>"></br></br>
 <label style="width:120px"><span></span>　备注：</label><textarea id="remark" name="remark" ><?php echo $remark?></textarea></br>
 <br/>
 <br/>

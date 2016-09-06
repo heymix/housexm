@@ -6,7 +6,7 @@ mysql_query($char_set);
 if ($action=="edit"){
  $id=$_GET["id"];    
     if(is_numeric($id)){
-        
+
         $Query = "select * from t_project where is_del=0 and id=$id";
         $result     = mysql_query($Query);
         $rs     = mysql_fetch_array($result);
@@ -17,7 +17,21 @@ if ($action=="edit"){
         $address =$rs["address"];
         $contact =$rs["contact"];
         $tel =$rs["tel"];
-        $remark =$rs["remark"];     
+        $remark =$rs["remark"];
+        $seller =$rs["seller"];
+        $areaMin =$rs["area_min"];
+        $areaMax =$rs["area_max"];
+        $propertyRights =$rs["property_rights"];
+        $propertyYear =$rs["property_year"];
+        $averagePrice =$rs["average_price"];
+        $developers =$rs["developers"];
+        $totalArea =$rs["total_area"];
+        $totalHouse =$rs["total_house"];
+        $sellNum =$rs["sell_num"];
+        $num =$rs["num"];
+        $middleSchool =$rs["middle_school"];
+        $primarySchool =$rs["primary_school"];
+   
     }else{
         echo "错误:入参非法";
         return false;
@@ -132,14 +146,19 @@ if ($action=="edit"){
         <td bgcolor="#f3ffe3"  class="tdStyle"><form method="post" id="editForm" name="editForm"  title="管理" >
         <input id="action" name="action" value="<?php echo $action?>" type=hidden>
         <input id="id" name="id" value="<?php echo $id?>" type=hidden>
-<label style="width:120px"><span></span> 编号：</label><input disabled type="text"  style="width:200px" value="<?php echo $id?>"></br>
+<input type="hidden"  style="width:200px" value="<?php echo $id?>" ></br>
 <label style="width:120px"><span>*</span> 名称：</label><input <?php if($action=="edit") echo "disabled"; ?> type="text" id="name" name="name" style="width:200px" value="<?php echo $name;?>"></br>
 <label style="width:120px"><span></span> 　简称：</label><input type="text" id="simpleName" name="simpleName" style="width:200px" value="<?php echo $simpleName?>"></br>
 <label style="width:120px"><span>*</span> 地址：</label><input type="text" id="address" name="address" style="width:200px" value="<?php echo $address?>"></br>
-<label style="width:120px"><span></span> 类别：</label>
-<select id="houseType" name="houseType">
+<label style="width:120px"><span></span> 联系人：</label><input type="text" id="contact" name="contact"   style="width:200px" value="<?php echo $contact?>"></br>
+<label style="width:120px"><span></span>　电话：</label><input type="text" id="tel" name="tel" style="width:200px" value="<?php echo $tel?>"></br></br>
+<label style="width:120px"><span></span>　置业顾问：</label><input type="text" id="seller" name="seller" style="width:200px" value="<?php echo $seller?>"></br></br>
+<label style="width:120px"><span></span>　面积区间：</label><input type="text" id="areaMin" name="areaMin" style="width:200px" value="<?php echo $areaMin?>">  <input type="text" id="areaMax" name="areaMax" style="width:200px" value="<?php echo $areaMax?>"></br></br>
+<label style="width:120px"><span></span>　权属性质：</label>
+
+<select id="propertyRights" name="propertyRights">
 	<?php 
-	$q = "select * from t_dictionary where type='house_type' order by order_id asc";                   //SQL查询语句
+	$q = "select * from t_dictionary where type='property_rights' order by order_id asc";                   //SQL查询语句
 	mysql_query($char_set);
 	$rs = mysql_query($q, $con);                     //获取数据集
 	//echo $q;
@@ -155,11 +174,20 @@ if ($action=="edit"){
 	    echo"<option value='".$row['value']."' ".$selected.">".$row['name']."</option>\n";
 	}
 	?>
-	
-   <?php ?>
 </select></br>
-<label style="width:120px"><span></span> 联系人：</label><input type="text" id="contact" name="contact"   style="width:200px" value="<?php echo $contact?>"></br>
-<label style="width:120px"><span></span>　电话：</label><input type="text" id="tel" name="tel" style="width:200px" value="<?php echo $tel?>"></br></br>
+
+
+</br></br>
+<label style="width:120px"><span></span>　产权年限：</label><input type="text" id="propertyYear" name="propertyYear" style="width:200px" value="<?php echo $propertyYear?>"></br></br>
+<label style="width:120px"><span></span>　均价：</label><input type="text" id="averagePrice" name="averagePrice" style="width:200px" value="<?php echo $averagePrice?>"></br></br>
+<label style="width:120px"><span></span>　开发商：</label><input type="text" id="developers" name="developers" style="width:200px" value="<?php echo $developers?>"></br></br>
+<label style="width:120px"><span></span>　总面积：</label><input type="text" id="totalArea" name="totalArea" style="width:200px" value="<?php echo $totalArea?>"></br></br>
+<label style="width:120px"><span></span>　总套数：</label><input type="text" id="totalHouse" name="totalHouse" style="width:200px" value="<?php echo $totalHouse?>"></br></br>
+<label style="width:120px"><span></span>　已销量：</label><input type="text" id="sellNum" name="sellNum" style="width:200px" value="<?php echo $sellNum?>"></br></br>
+<label style="width:120px"><span></span>　库存量：</label><input type="text" id="num" name="num" style="width:200px" value="<?php echo $num?>"></br></br>
+<label style="width:120px"><span></span>　所属中学：</label><input type="text" id="middleSchool" name="middleSchool" style="width:200px" value="<?php echo $middleSchool?>"></br></br>
+<label style="width:120px"><span></span>　所属小学：</label><input type="text" id="primarySchool" name="primarySchool" style="width:200px" value="<?php echo $primarySchool?>"></br></br>
+
 <label style="width:120px"><span></span>　备注：</label><textarea id="remark" name="remark" ><?php echo $remark?></textarea></br>
 <br/>
 <br/>

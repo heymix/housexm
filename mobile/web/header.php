@@ -9,6 +9,7 @@
         <li><a href="#" onclick='window.location.href="../index.php"'>首页</a></li>
         <li><a href="#" onclick='window.location.href="client_edit.php"'>新增</a></li>
         <li><a href="#" onclick='window.location.href="client_list.php"'>查询</a></li>
+        <li><a href="#" onclick='window.location.href="password_edit.php"'>修改密码</a></li>
         <li><a href="#" onclick='window.location.href="../index.php?action=logout"'>退出</a></li>
     </ul>
   </div>

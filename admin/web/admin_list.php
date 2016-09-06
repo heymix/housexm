@@ -57,7 +57,6 @@ if (empty($_GET['page']) || $_GET['page'] < 0) {
 $offset = $Page_size * ($page - 1);
 $sql = "select e.*,c.name as company_name,c.tel as tel from t_admin e left join t_company c on e.company_id=c.id 
             where e.is_del=0 $sqlKey order by e.id desc limit $offset,$Page_size";
-echo $sql;
 $result = mysql_query($sql);
 $content="";
 while ($row = mysql_fetch_array($result)) {
@@ -66,7 +65,6 @@ $content.="<tr>\n";
 $content.="    <td height='18' ><div align='center' >\n";
 $content.="    <input name='subBox[]' type='checkbox' value='".$row['id']."' />\n";
 $content.="    </div></td>\n";
-$content.="    <td height='18' ><span class='tdStyle'>".$row['id']."</span></td>\n";
 $content.="    <td height='18' >".$row['user_name']."</td>\n";
 $content.="    <td height='18' >".$row['company_name']."</td>\n";
 $content.="    <td height='18' >".$row['tel']."</td>\n";
@@ -278,7 +276,6 @@ function delPost(id,type){
           <table class="list_table" width="99%" border="0" align="center" cellpadding="0" cellspacing="1">
             <tbody><tr class="alt">
               <th width="5%" height="26">选择</th>
-              <th width="10%" height="26">编号</th>
               <th width="10%" height="26">用户名</th>
               <th width="10%" height="26">公司</th>
               <th width="10%" height="26">电话</th>

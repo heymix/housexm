@@ -8,6 +8,7 @@ $num = $_POST["num"];
 $price = $_POST["price"];
 $priceStatus = $_POST["priceStatus"];
 $endPriceTime = $_POST["endPriceTime"];
+$visitDate = $_POST["visitDate"];
  
 $remark=$_POST["remark"];
 $action=$_POST["action"];
@@ -39,14 +40,7 @@ mysql_query($char_set);
     }
 } */
 
-$checkTime = $_POST["checkTime"];
-$checkStatus = $_POST["checkStatus"];
-$housePrice = $_POST["housePrice"];
-$area = $_POST["area"];
-$num = $_POST["num"];
-$price = $_POST["price"];
-$priceStatus = $_POST["priceStatus"];
-$endPriceTime = $_POST["endPriceTime"];
+
 if($action==="edit"){
     $updateSql="";
     if($checkTime!=''){
@@ -65,7 +59,10 @@ if($action==="edit"){
      if(is_numeric($area)){
         $updateSql.=",`area`='$area'";
     }
-    
+    if(!empty($visitDate)){
+        $updateSql.=",`visit_date`='$visitDate'";
+    }
+
     $query = "update t_client set `check_status`='$checkStatus',
                 `num`='$num',
                 `price_status`='$priceStatus',

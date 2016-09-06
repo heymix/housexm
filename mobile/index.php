@@ -67,6 +67,7 @@ $(document).ready(function(){
 	用户名: <input type="text" name="userName" id="userName" />
 	密码: <input type="password" name="userPass" id="userPass" />
     <a href="#" data-role="button" onClick="slog();"><img src="images/seek.gif"> 登录</a>
+    <a href="#" data-role="button" onclick='window.location.href="reg.php"'><img src="images/add.gif"> 注册</a>
 	</form>
 
   </div>

@@ -22,17 +22,27 @@ $operateUser=$_SESSION["userId"];
 mysql_select_db($db_name, $con);          //选择数据库
 mysql_query($char_set);
 if ($action==="save"){
-    $query = "select id from t_employee where user_name='$userName' and is_del=0";                   //SQL查询语句
+    $query = "select id from t_employee where tel='$tel' and is_del=0";                   //SQL查询语句
     mysql_query($char_set);
     $rs = mysql_query($query, $con);                     //获取数据集
     if(!$rs){die("0|Valid result!");}
     if(mysql_num_rows($rs)>=1){
-        echo "0|操作失败，数据重复！";
+        echo "0|操作失败，电话号重复！";
     }else{
-        $password=md5($password);
-        $query="insert into t_employee (`user_name`,`true_name`,`company_id`,`tel`,`remark`,`password`,`sex`,user_id,`create_user`,`create_time`)values ('$userName','$trueName','$companyId','$tel','$remark','$password','$sex','$userId','$operateUser',now())";
-        mysql_query($query,$con);
-        echo "1|添加成功！";
+        
+        $query = "select id from t_employee where user_name='$userName' and is_del=0";                   //SQL查询语句
+        mysql_query($char_set);
+        $rs = mysql_query($query, $con);                     //获取数据集
+        if(!$rs){die("0|Valid result!");}
+        if(mysql_num_rows($rs)>=1){
+            echo "0|操作失败，用户名重复！";
+        }else{
+            $password=md5($password);
+            $query="insert into t_employee (`user_name`,`true_name`,`company_id`,`tel`,`remark`,`password`,`sex`,user_id,`create_user`,`create_time`)values ('$userName','$trueName','$companyId','$tel','$remark','$password','$sex','$userId','$operateUser',now())";
+            mysql_query($query,$con);
+            echo "1|添加成功！";
+        }
+        
     }
 }
 if($action==="edit"){
@@ -40,9 +50,17 @@ if($action==="edit"){
         $password=md5($password);
         $updateSql=",password='$password'";
     }
-    $query = "update t_employee set `true_name`='$trueName',`company_id`='$companyId',`tel`='$tel',`remark`='$remark',`sex`='$sex',`user_id`='$userId',update_time=now(),update_user='$operateUser' $updateSql where id=$id";
-    mysql_query($query,$con);
-    echo "1|修改成功！";
+    $query = "select id from t_employee where tel='$tel' and id<>'$id' and is_del=0";                   //SQL查询语句
+    mysql_query($char_set);
+    $rs = mysql_query($query, $con);                     //获取数据集
+    if(!$rs){die("0|Valid result!");}
+    if(mysql_num_rows($rs)>=1){
+        echo "0|操作失败，电话号重复！";
+    }else{
+        $query = "update t_employee set `true_name`='$trueName',`company_id`='$companyId',`tel`='$tel',`remark`='$remark',`sex`='$sex',`user_id`='$userId',update_time=now(),update_user='$operateUser' $updateSql where id=$id";
+        mysql_query($query,$con);
+        echo "1|修改成功！";
+    }
 }
 if($action==="del"){
     $idArr="";
