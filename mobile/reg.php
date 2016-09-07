@@ -72,7 +72,7 @@ $(document).ready(function(){
   	echo "<input id='project' name='project' type='hidden' value='$projectId'>";
   	}
   	    ?>
-  	项目: <select <?php if($action=='edit') echo "disabled";?>  name="project" id="project">
+  	选择公司: <select <?php if($action=='edit') echo "disabled";?>  name="project" id="project">
   	      <?php 
         	$q = "select * from t_company where is_del=0 order by pinyin_name asc";                   //SQL查询语句
         	mysql_query($char_set);

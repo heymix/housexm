@@ -66,6 +66,7 @@ function postArr($Arr){
 	
 	$str ='';
 	if (is_array($Arr)) {
+	    $str =',';
 		foreach($Arr as $var)//通过foreach循环取出多选框中的值
 		{
 		$str=$str.$var.",";
