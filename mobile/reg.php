@@ -68,11 +68,8 @@ $(document).ready(function(){
   <div data-role="content">
   <p id="errMsg" style="color:#F00"></p>
   	<form id="editForm" name="editForm"  method="post" >
-  	<?php if($action=='edit'){
-  	echo "<input id='companyId' name='companyId' type='hidden' value='$projectId'>";
-  	}
   	    ?>
-  	选择公司: <select <?php if($action=='edit') echo "disabled";?>  name="project" id="project">
+  	选择公司: <select <?php if($action=='edit') echo "disabled";?>  name="companyId" id="companyId">
   	      <?php 
         	$q = "select * from t_company where is_del=0 order by pinyin_name asc";                   //SQL查询语句
         	mysql_query($char_set);
