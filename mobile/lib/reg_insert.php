@@ -24,6 +24,11 @@ if($parentId!=""){
     if(mysql_num_rows($rs)>=1){
         die("0|操作失败，推荐人不存在！");
     }
+}else{
+    $parentId=0;
+}
+if($companyId==""){
+    die("0|操作失败，公司不能为空！");
 }
     
 

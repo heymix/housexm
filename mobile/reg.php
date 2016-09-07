@@ -69,7 +69,7 @@ $(document).ready(function(){
   <p id="errMsg" style="color:#F00"></p>
   	<form id="editForm" name="editForm"  method="post" >
   	<?php if($action=='edit'){
-  	echo "<input id='project' name='project' type='hidden' value='$projectId'>";
+  	echo "<input id='companyId' name='companyId' type='hidden' value='$projectId'>";
   	}
   	    ?>
   	选择公司: <select <?php if($action=='edit') echo "disabled";?>  name="project" id="project">
