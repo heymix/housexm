@@ -10,6 +10,7 @@ if (!isset($_COOKIE["userName"])){
 $sys_path		= 'http://localhost:8077/xiangmu/mobile';
 //数据库相关设置
 include '../config/conn.php';
+include '../config/Result.php';
 
 //截取字符串
 	function sysSubStr($String,$Length,$Append = false){   

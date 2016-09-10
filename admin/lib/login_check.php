@@ -4,6 +4,7 @@ include '../config/conn.php';
 
 $userName=$_POST["UserName"];
 $password=$_POST["PassWord"];
+$channel=$_POST["channel"];
 
 
 if ($userName==""){
@@ -25,25 +26,50 @@ if(!$rs){die("0|Valid result!");}
 if (mysql_num_rows($rs)>5){
     die ("0|连续失败5次,锁定用户登录10分钟。");
 } 
-$query = "select a.id,a.company_id,c.name as company_name from t_admin as a left join t_company as c on a.company_id=c.id where a.user_name='$userName' and a.password='". md5($password) ."' and a.is_del=0";  
-//echo $query;//SQL查询语句
-mysql_query($char_set);
-$rs = mysql_query($query, $con);                     //获取数据集
-if(!$rs){die("0|Valid result!");}
-if(mysql_num_rows($rs)>=1){
-    echo ("1|登录成功!");
-    $row  = mysql_fetch_array($rs);
-    $_SESSION['userName'] = "$userName";
-    $_SESSION['userId'] = $row['id'];
-    $_SESSION['companyId'] = $row['company_id'];
-    $_SESSION['companyName'] = $row['company_name'];
+if($channel==1){    
+    $query = "select a.id,a.company_id,c.name as company_name from t_admin as a left join t_company as c on a.company_id=c.id where a.user_name='$userName' and a.password='". md5($password) ."' and a.is_del=0";  
+    //echo $query;//SQL查询语句
+    mysql_query($char_set);
+    $rs = mysql_query($query, $con);                     //获取数据集
+    if(!$rs){die("0|Valid result!");}
+    if(mysql_num_rows($rs)>=1){
+        echo ("1|登录成功!");
+        $row  = mysql_fetch_array($rs);
+        $_SESSION['userName'] = "$userName";
+        $_SESSION['userId'] = $row['id'];
+        $_SESSION['companyId'] = $row['company_id'];
+        $_SESSION['companyName'] = $row['company_name'];
+        $_SESSION['channel'] = "1";
+        
+        $query="delete from t_login_check where user_name='$userName'";
+        mysql_query($query,$con);
+    }else{
+        echo ("0|用户名或密码错误!");
+    } 
+}elseif($channel==2){
+    $query = "select t.id,t.company_id,c.name as company_name from t_employee as t left join t_company as c on t.company_id=c.id where t.user_name='$userName' and t.password='". md5($password) ."' and is_del=0";
+    //echo $query;//SQL查询语句
+    mysql_query($char_set);
+    $rs = mysql_query($query, $con);                     //获取数据集
+    if(!$rs){die("0|Valid result!");}
+    if(mysql_num_rows($rs)>=1){
+        echo ("1|登录成功!");
+        $row  = mysql_fetch_array($rs);
+        $_SESSION['userName'] = "$userName";
+        $_SESSION['userId'] = $row['id'];
+        $_SESSION['companyId'] = $row['company_id'];
+        $_SESSION['companyName'] = $row['company_name'];
+        $_SESSION['channel'] = "2";
     
-    $query="delete from t_login_check where user_name='$userName'";
-    mysql_query($query,$con);
+        $query="delete from t_login_check where user_name='$userName'";
+        mysql_query($query,$con);
+    }else{
+        echo ("0|用户名或密码错误!");
+    }
 }else{
-    
-    echo ("0|用户名或密码错误!");
-} 
+    echo ("0|错误未选择登录通道!");
+}
+
 
 
  mysql_close($con);

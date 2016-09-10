@@ -1,5 +1,6 @@
 <?php 
 include 'config/conn.php';
+$parentId=$_GET["parentId"];
 mysql_select_db($db_name, $con);          //选择数据库
 mysql_query($char_set);
 ?>
@@ -68,7 +69,6 @@ $(document).ready(function(){
   <div data-role="content">
   <p id="errMsg" style="color:#F00"></p>
   	<form id="editForm" name="editForm"  method="post" >
-  	    ?>
   	选择公司: <select <?php if($action=='edit') echo "disabled";?>  name="companyId" id="companyId">
   	      <?php 
         	$q = "select * from t_company where is_del=0 order by pinyin_name asc";                   //SQL查询语句
@@ -93,7 +93,7 @@ $(document).ready(function(){
 	姓名: <input type="text" name="trueName" id="trueName" />
 	电话: <input type="text" name="tel" id="tel" />
 	微信: <input type="text" name="wechat" id="wechat" />
-	推荐人: <input type="text" name="parentId" id="parentId" onblur="alert('d')" />
+	推荐码: <input <?php if(!empty($parentId)) echo ""?> type="text" name="parentId" id="parentId" value="<?php echo$parentId;?>" />
 	密码: <input type="password" name="password" id="password" placeholder="6位数字"/>
 	确认密码: <input type="password" name="repassword" id="repassword" placeholder="6位数字" />
     <a href="#" data-role="button" onClick="submitForm();"><img src="../images/add.gif">提交</a>

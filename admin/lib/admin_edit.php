@@ -6,14 +6,18 @@ $password=$_POST["password"];
 $remark=$_POST["remark"];
 $action=$_POST["action"];
 $id=$_POST["id"];
+
+$power=postArr($_POST["power"]);
+
+
 $subBox=$_POST["subBox"];
 
 $operateUser=$_SESSION["userId"];
 
-//echo $action;
+
 //echo $db_name;
 /* echo $type.$name.$value.$orderId; */
-//var_dump($name);
+//var_dump($power);
 mysql_select_db($db_name, $con);          //选择数据库
 mysql_query($char_set);
 if ($action==="save"){
@@ -25,7 +29,7 @@ if ($action==="save"){
         echo "0|操作失败，数据重复！";
     }else{
         $password=md5($password);
-        $query="insert into t_admin (`user_name`,`company_id`,`remark`,`password`,`create_user`,`create_time`)values ('$userName','$companyId','$remark','$password','$operateUser',now())";
+        $query="insert into t_admin (`user_name`,`company_id`,`remark`,`password`,`power`,`create_user`,`create_time`)values ('$userName','$companyId','$remark','$password','$power','$operateUser',now())";
         mysql_query($query,$con);
         echo "1|添加成功！";
     }
@@ -35,7 +39,7 @@ if($action==="edit"){
         $password=md5($password);
         $updateSql=",password='$password'";
     }
-    $query = "update t_admin set `remark`='$remark',update_time=now(),update_user='$operateUser' $updateSql where id=$id";
+    $query = "update t_admin set `remark`='$remark',update_time=now(),update_user='$operateUser',power='$power' $updateSql where id=$id";
     mysql_query($query,$con);
     echo "1|修改成功！";
 }

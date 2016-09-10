@@ -23,6 +23,11 @@ $(document).ready(function()
 	
 });
 function loginCheck(){
+
+	   if($("#channel").val()==""){
+		alertWin('error','警告',"登录通道必须选择！");
+		return false;
+		}
 		if($("#UserName").val()==""){
 			alertWin('error','警告',"用户名不能为空！");
 			return false;
@@ -119,7 +124,12 @@ body,form {
                 <td height="30"><input id="PassWord" type="password" name="PassWord"  style="height:18px; width:130px; border:solid 1px #cadcb2; font-size:12px; color:#81b432;" onKeyPress="if (event.keyCode==13) loginCheck();"></td>
               </tr>
               <tr>
-                <td height="30">&nbsp;</td>
+                <td height="30"><select name="channel" id="channel" style="width: 50px;">
+                                    <option value="">选择</option>
+                                    <option value="1">管理员</option>
+                                    <option value="1">公司渠道</option>
+                                    <option value="2">独立渠道</option>
+                                    </select></td>
                 <td height="30"><img src="images/dl.gif" width="81" height="22" border="0" usemap="#Map"></td>
               </tr>
             </table></form></td>
