@@ -197,7 +197,7 @@ function popOpen(id){
     <a href="#" data-role="button" onClick="searchPost();"><img src="../images/seek.gif">查询</a>
 	</form><br>
         <ul data-role="listview" data-split-icon="delete">
-            <li data-role="list-divider">评论列表</li>
+            <li data-role="list-divider">活动列表</li>
             <?php echo $content;?>
         </ul>
         <br>
