@@ -21,7 +21,7 @@ if($parentId!=""){
     mysql_query($char_set);
     $rs = mysql_query($query, $con);
     if(!$rs){die("0|Valid result!");}
-    if(mysql_num_rows($rs)>=1){
+    if(!(mysql_num_rows($rs)>=1)){
         die("0|操作失败，推荐人不存在！");
     }
 }else{
