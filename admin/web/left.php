@@ -127,7 +127,7 @@ function showmenu(list_num){
          <li><a href="javascript:void(0)"  onclick="window.top.frames['mainFrame'].frames['main'].location = 'project_list.php'"><img src="../images/test.gif" width="16" height="15" />项目管理</a></li>
          <li><a href="javascript:void(0)"  onclick="window.top.frames['mainFrame'].frames['main'].location = 'admin_list.php'"><img src="../images/test.gif" width="16" height="15" />管理员</a></li>
          <li><a href="javascript:void(0)"  onclick="window.top.frames['mainFrame'].frames['main'].location = 'role_list.php'"><img src="../images/test.gif" width="16" height="15" />角色管理</a></li>
-         <li><a href="javascript:void(0)"  onclick="window.top.frames['mainFrame'].frames['main'].location = 'news_list.php'"><img src="../images/test.gif" width="16" height="15" />新闻分享管理</a></li>
+         <li><a href="javascript:void(0)"  onclick="window.top.frames['mainFrame'].frames['main'].location = 'news_list.php'"><img src="../images/test.gif" width="16" height="15" />活动分享管理</a></li>
         </ul>    
     </li>
   
