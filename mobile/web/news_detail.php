@@ -39,7 +39,7 @@ if(is_numeric($id)){
 <div data-role="page" id="page1">
   <div data-role="header">
   
-     <a href="#" onClick='window.location.href="../reg.php?parentId=<?php echo $userId;?>"'data-role="button">注册会员</a><h1><?php echo $title;?></h1>
+     <a href="#" onClick='window.location.href="../sign_up.php?promotionId=<?php echo $id;?>&parentId=<?php echo $userId;?>"' data-role="button">注册会员</a><h1><?php echo $title;?></h1>
      <a href="#" onClick='window.location.href="../sign_up.php?promotionId=<?php echo $id;?>&parentId=<?php echo $userId;?>"' data-role="button">我要报名</a>
      
   </div>
