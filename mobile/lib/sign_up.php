@@ -1,4 +1,4 @@
-<?php include '../config/config.php';
+<?php include '../config/conn.php';
 
 $parentId=$_POST["parentId"];
 $promotionId=$_POST["promotionId"];
@@ -6,17 +6,6 @@ $name=$_POST["name"];
 $tel=$_POST["tel"];
 
 $action=$_POST["action"];
-$id=$_POST["id"];
-
-
-
-
-$power=postArr($_POST["power"]);
-
-
-$subBox=$_POST["subBox"];
-
-$operateUser=$_COOKIE["userId"];
 
 
 //echo $db_name;
@@ -33,8 +22,8 @@ if ($action==="save"){
     if(mysql_num_rows($rs)>=1){
         echo "0|操作失败，已经注册过！";
     }else{
-        $query="insert into t_promotion_client (`name`,`tel`,`promotion_id`,`parent_id`,`create_user`,`create_time`)values 
-                                        ('$name','$tel','$promotionId','$parentId','$operateUser',now())";
+        $query="insert into t_promotion_client (`name`,`tel`,`promotion_id`,`parent_id`,`create_time`)values 
+                                        ('$name','$tel','$promotionId','$parentId',now())";
         $isSuccess=mysql_query($query,$con);
         if($isSuccess===false){
             echo "0|添加失败： 数据错误！错误代码：db001";
@@ -44,36 +33,8 @@ if ($action==="save"){
        
     }   
 }
-if($action==="edit"){
 
-    $query = "update t_promotion_client set `name`='$name',`tel`='$tel',`promotion_id`='$promotionId',
-                                       `parent_id`='$parentId',
-    update_time=now(),update_user='$operateUser' where id=$id";
-    mysql_query($query,$con);
-    $isSuccess=mysql_query($query,$con);
-    if($isSuccess===false){
-        echo "0|修改失败： 数据错误！错误代码：db001";
-    }else{
-        echo "1|修改成功！category";
-    }
-}
-if($action==="del"){
-    $idArr="";
-   foreach ($subBox as $k=>$v){
-       if($idArr==""){
-           $idArr=$v;
-       }else{
-           $idArr.=",$v";
-           }
-    }
-    $query="update t_promotion_client set is_del='1',update_time=now(),update_user='$operateUser' where id in($idArr)";
-    $isSuccess=mysql_query($query,$con);
-    if($isSuccess===false){
-        echo "0|删除失败： 数据错误！错误代码：$query";
-    }else{
-        echo "1|删除成功！";
-    }
-}
+
 
  mysql_close($con);
 
