@@ -1,4 +1,4 @@
-<?php include '../config/config.php';
+<?php include '../config/conn.php';
 
 $parentId=$_POST["parentId"];
 $promotionId=$_POST["promotionId"];
