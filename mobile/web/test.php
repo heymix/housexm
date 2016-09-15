@@ -1,1 +1,1 @@
-<?php echo '{"access_token":"ACCESS_TOKEN","expires_in":7200}'?>
+<?php echo '{"errcode":0,"errmsg":"ok","ticket":"bxLdikRXVbTPdHSM05e5u5sUoXNKd8-41ZO3MhKoyN5OfkWITDGgnr2fwJ0m9E8NYzWKVZvdVtaUgWvsdshFKA","expires_in":7200}'?>

@@ -129,9 +129,21 @@ if($employeeTel!=""){
     $sqlKey .= " and e.`tel` like '%$employeeTel%'";
 }
 
-if($_SESSION["companyId"]!=0){
-    $sqlKey .= " and e.`company_id` = '".$_SESSION['companyId']."'";
+
+if($_SESSION['channel'] == "1"){
+
+    if(checkPower("29")){
+        $sqlKey .= " and e.`company_id` = '".$_SESSION['companyId']."'";
+    }
+
+}else{
+
+    if(checkPower("29")){
+        $sqlKey .= " and e.`company_id` = '".$_SESSION['companyId']."'";
+        $sqlKey .= " and (e.`id` = '". $_SESSION['userId']."' or e.`parent_id` = '".$_SESSION['userId']."')";
+    }
 }
+
 
 $Query =  "SELECT sum(price) as price_sum,e.user_name,e.true_name,e.tel as employee_tel,c.name as company_name
 ,(select count(*) from t_client as yj where yj.employee_id=t.employee_id and yj.price_status=2 $yjKey) as price_status_is

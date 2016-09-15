@@ -112,4 +112,16 @@ function cut_str($string, $sublen, $start = 0, $code = 'UTF-8')
         return $tmpstr;
     }
 }
+
+function checkPower($str){
+    $strArr=explode(",",$str);
+    $returnStr = false;
+    foreach ($strArr as $v){
+        if(strpos($_SESSION['power'], ",$v,")!==false){
+            $returnStr = true;
+            break;
+        }
+    }
+    return $returnStr;
+}
 ?>

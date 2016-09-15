@@ -124,9 +124,20 @@ if($projectName!=""){
 }
 
 
-if($_SESSION["companyId"]!=0){
-    $sqlKey .= " and e.`company_id` = '".$_SESSION['companyId']."'";
+if($_SESSION['channel'] == "1"){
+
+    if(checkPower("27")){
+        $sqlKey .= " and e.`company_id` = '".$_SESSION['companyId']."'";
+    }
+
+}else{
+
+    if(checkPower("27")){
+        $sqlKey .= " and e.`company_id` = '".$_SESSION['companyId']."'";
+        $sqlKey .= " and (e.`id` = '". $_SESSION['userId']."' or e.`parent_id` = '".$_SESSION['userId']."')";
+    }
 }
+
 
 $Query = "SELECT sum(price) as price_sum,p.name as project_name
 ,(select count(*) from t_client as yj where yj.project_id=t.project_id and yj.price_status=2 $yjKey) as price_status_is

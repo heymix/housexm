@@ -69,9 +69,22 @@ if($employeeTel!=""){
     $sqlKey .= " and e.`tel` like '%$employeeTel%'";
 }
 
-if($_SESSION["companyId"]!=0){
-    $sqlKey .= " and e.`company_id` = '".$_SESSION['companyId']."'";
+
+
+if($_SESSION['channel'] == "1"){
+
+    if(checkPower("29")){
+        $sqlKey .= " and e.`company_id` = '".$_SESSION['companyId']."'";
+    }
+
+}else{
+
+    if(checkPower("29")){
+        $sqlKey .= " and e.`company_id` = '".$_SESSION['companyId']."'";
+        $sqlKey .= " and (e.`id` = '". $_SESSION['userId']."' or e.`parent_id` = '".$_SESSION['userId']."')";
+    }
 }
+
 
 $Query = "Select count(*) as c from (SELECT t.id FROM t_client as t 
 left join t_employee as e on t.employee_id=e.id 

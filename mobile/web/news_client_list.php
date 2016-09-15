@@ -128,26 +128,6 @@ $(document).ready(function(){
 		window.location.href="?1=1&"+$("#searchForm").serialize();	
 	}
 
-function submitForm(){
-	//alert("ddd");
-	
-	
-	if($("#visitDate").val().length==0){
-		$("#errMsg").html('日期不能为空！');
-		return false;
-	}
-
-    $("#errMsg").html('正在提交请稍后....！');
-
-	$.post(	"../lib/client_edit.php", 
-		$("#editForm").serialize(), 
-		function(data,st){
-			var resultArr=data.split("|");
-			$("#errMsg").html(resultArr[1]);
-			$("#myPopup").popup('close');
-			window.location.reload();
-		});
-}
 function popOpen(id){
 	$("#errMsg").html('');
 	$("#id").val(id);

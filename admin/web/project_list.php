@@ -88,7 +88,12 @@ $content.="    <td height='18' >".$row['num']."</td>\n";
 $content.="    <td height='18' >".$row['middle_school']."</td>\n";
 $content.="    <td height='18' >".$row['primary_school']."</td>\n";
 $content.="    <td height='18' >".$row['remark']."</td>\n";
-$content.="    <td height='18'><img src='../images/edit.gif'>[<a href=\"project_edit.php?id=".$row['id']."&action=edit\">编辑</a>]</td>";
+$editStr="";
+if(checkPower("11")){
+    $editStr="<img src='../images/edit.gif'>[<a href=\"project_edit.php?id=".$row['id']."&action=edit\">编辑</a>]";
+}
+
+$content.="    <td height='18'>$editStr</td>";
 $content.="</tr>\n";
 }
 $page_len = ($page_len % 2) ? $page_len : $pagelen + 1; // 页码个数
@@ -303,10 +308,10 @@ function delPost(id,type){
         <td width="15" height="30"><img src="../images/tab_03.gif" width="15" height="30"></td>
         <td width="275" background="../images/tab_05.gif" class="tdStyle"><img src="../images/311.gif" width="16" height="16"> <span class="tbTitle">公司列表</span></td>
         <td background="../images/tab_05.gif" class="tdStyle tdNavMn"><a href="javascript:void(0)" onclick="window.location.reload();"><img src="../images/refresh.gif" width="16" height="16"></a>
-          <input id="checkAll" type="checkbox" name="checkbox62" value="checkbox" onblur="selectAll(this);">
+          <?php if(checkPower("15")){?><input id="checkAll" type="checkbox" name="checkbox62" value="checkbox" onblur="selectAll(this);">
           全选
           <input id="inverse" type="checkbox" name="inverse" value="checkbox">
-          反选  <img src="../images/083.gif" width="14" height="14"><font><a href="javascript:void(0)" onclick="delPost('-1','multi');">删除选中</a></font> </td>
+          反选  <img src="../images/083.gif" width="14" height="14"><font><a href="javascript:void(0)" onclick="delPost('-1','multi');">删除选中</a></font><?php }?> </td>
         <td width="14"><img src="../images/tab_07.gif" width="14" height="30"></td>
       </tr>
     </tbody></table></td>

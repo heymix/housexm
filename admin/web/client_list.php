@@ -84,11 +84,23 @@ if($employeeTel!=""){
     $sqlKey .= " and e.`tel` like '%$employeeTel%'";
 }
 
-if($_SESSION["companyId"]!=0){
-    $sqlKey .= " and e.`company_id` = '".$_SESSION['companyId']."'";
+
+if($_SESSION['channel'] == "1"){
+
+    if(checkPower("20")){
+        $sqlKey .= " and e.`company_id` = '".$_SESSION['companyId']."'";
+    }
+
+}else{
+
+    if(checkPower("20")){
+        $sqlKey .= " and e.`company_id` = '".$_SESSION['companyId']."'";
+        $sqlKey .= " and t.`employee_id` = '".$_SESSION['userId']."'";
+    }
 }
 
-$Query = "Select count(*) as c from t_client where is_del=0 $sqlKey";
+
+$Query = "Select count(*) as c from t_client as t where t.is_del=0 $sqlKey";
 $result     = mysql_query($Query);
 $rs     = mysql_fetch_array($result);
 $count = $rs["c"]; //条数
@@ -154,7 +166,7 @@ if(!empty($row['end_price_time'])){
 $content.="    <td height='18' >". $end_price_time ."</td>\n";
 $content.="    <td height='18' >".$row['remark']."</td>\n";
 $editStr="";
-if($_SESSION["companyId"]==0){
+if(checkPower("21")){
     $editStr="<img src='../images/edit.gif'>[<a href=\"client_edit.php?id=".$row['id']."&action=edit\">编辑</a>]";
 }
 $content.="    <td height='18'>$editStr</td>";
@@ -410,7 +422,7 @@ function delPost(id,type){
       <tbody><tr>
         <td width="15" height="30"><img src="../images/tab_03.gif" width="15" height="30"></td>
         <td width="275" background="../images/tab_05.gif" class="tdStyle"><img src="../images/311.gif" width="16" height="16"> <span class="tbTitle">公司列表</span></td>
-        <td background="../images/tab_05.gif" class="tdStyle tdNavMn"><?php if($_SESSION["companyId"]==0){?><a href="javascript:void(0)" onclick="window.location.reload();"><img src="../images/refresh.gif" width="16" height="16"></a>
+        <td background="../images/tab_05.gif" class="tdStyle tdNavMn"><?php if(checkPower("21")){?><a href="javascript:void(0)" onclick="window.location.reload();"><img src="../images/refresh.gif" width="16" height="16"></a>
           <input id="checkAll" type="checkbox" name="checkbox62" value="checkbox" onblur="selectAll(this);">
           全选
           <input id="inverse" type="checkbox" name="inverse" value="checkbox">

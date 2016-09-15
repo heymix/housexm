@@ -45,7 +45,7 @@ $(document).ready(function(){
         		return false;
         	}
 		
-		alert('正在提交请稍后....！');
+        	$("#errMsg").html('正在提交请稍后....！');
 		
 			$.post(	"lib/reg_insert.php", 
 				$("#editForm").serialize(), 

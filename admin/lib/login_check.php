@@ -27,7 +27,10 @@ if (mysql_num_rows($rs)>5){
     die ("0|连续失败5次,锁定用户登录10分钟。");
 } 
 if($channel==1){    
-    $query = "select a.id,a.company_id,c.name as company_name from t_admin as a left join t_company as c on a.company_id=c.id where a.user_name='$userName' and a.password='". md5($password) ."' and a.is_del=0";  
+    $query = "select a.id,a.company_id,c.name as company_name,r.power from t_admin as a 
+                        left join t_company as c on a.company_id=c.id 
+                        left join t_role as r on a.role_id=r.id
+                        where a.user_name='$userName' and a.password='". md5($password) ."' and a.is_del=0";  
     //echo $query;//SQL查询语句
     mysql_query($char_set);
     $rs = mysql_query($query, $con);                     //获取数据集
@@ -39,6 +42,7 @@ if($channel==1){
         $_SESSION['userId'] = $row['id'];
         $_SESSION['companyId'] = $row['company_id'];
         $_SESSION['companyName'] = $row['company_name'];
+        $_SESSION['power'] = $row['power'];
         $_SESSION['channel'] = "1";
         
         $query="delete from t_login_check where user_name='$userName'";
@@ -47,11 +51,25 @@ if($channel==1){
         echo ("0|用户名或密码错误!");
     } 
 }elseif($channel==2){
-    $query = "select t.id,t.company_id,c.name as company_name from t_employee as t left join t_company as c on t.company_id=c.id where t.user_name='$userName' and t.password='". md5($password) ."' and is_del=0";
-    //echo $query;//SQL查询语句
+    
+    $query = "select * from t_role where id=5";
     mysql_query($char_set);
     $rs = mysql_query($query, $con);                     //获取数据集
     if(!$rs){die("0|Valid result!");}
+    if(mysql_num_rows($rs)>=1){
+        $row  = mysql_fetch_array($rs);
+        $power=$row["power"];
+    }else{
+        echo ("0|权限出问题!");
+        exit;
+    }
+    
+    $query = "select e.id,e.company_id,c.name as company_name from t_employee as e left join t_company as c on e.company_id=c.id 
+    where e.user_name='$userName' and e.password='". md5($password) ."' and e.is_del=0";
+    //echo $query;//SQL查询语句
+    mysql_query($char_set);
+    $rs = mysql_query($query, $con);                     //获取数据集
+    if(!$rs){die("0|Valid result!$query");}
     if(mysql_num_rows($rs)>=1){
         echo ("1|登录成功!");
         $row  = mysql_fetch_array($rs);
@@ -59,6 +77,7 @@ if($channel==1){
         $_SESSION['userId'] = $row['id'];
         $_SESSION['companyId'] = $row['company_id'];
         $_SESSION['companyName'] = $row['company_name'];
+        $_SESSION['power']=$power;
         $_SESSION['channel'] = "2";
     
         $query="delete from t_login_check where user_name='$userName'";

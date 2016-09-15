@@ -105,4 +105,8 @@ function cut_str($string, $sublen, $start = 0, $code = 'UTF-8')
         return $tmpstr;
     }
 }
+
+
+
+
 ?>

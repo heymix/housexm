@@ -19,7 +19,7 @@ if ($action=="edit"){
         $contact =$rs["contact"];
         $tel =$rs["tel"];
         $remark =$rs["remark"];
-        $power =$rs["power"];
+        $roleId =$rs["role_id"];
        
            
     }else{
@@ -153,7 +153,7 @@ if ($action=="edit"){
 <label style="width:120px"><span></span> 公司：</label>
 <select id="companyId" name="companyId">
 	<?php 
-	echo"<option value='-1' ".$selected.">系统管理员</option>\n";
+	echo"<option value='0' ".$selected.">系统管理员</option>\n";
 	$q = "select * from t_company where is_del=0  order by pinyin_name asc";                   //SQL查询语句
 	mysql_query($char_set);
 	$rs = mysql_query($q, $con);                     //获取数据集
@@ -182,24 +182,28 @@ if ($action=="edit"){
 <label style="width:120px"><span></span>　备注：</label><textarea id="remark" name="remark" ><?php echo $remark?></textarea></br>
 <br/>
 <br/>
- <?php 
-    $q = "select m.*,concat(ifnull(s.name,''),m.name) as full_name from t_resource as m left join  t_resource as s on m.parent_id=s.id where m.parent_id<>0";                   //SQL查询语句
-    mysql_query($char_set);
-    $rs = mysql_query($q, $con); 
-    if(!$rs){die("Valid result!");}
-    $i=0;
-    while($row = mysql_fetch_array($rs)) {
-        
-        if(strpos($power, ",".$row['id'].",")!==false){
-            $checked="checked";
-        }else{
-            $checked="";
-        }
-        if($i%3==0) echo"<br><br>";
-        $i+=1;
-        echo "<label style='width:200px;border: solid #222 1px;'>".$row['full_name']." <input style='width:20px;margin-top:5px;' name='power[]'  type='checkbox' value='".$row['id']."' ".$checked."></label>\n";
-    }
-    ?>
+<label style="width:120px"><span></span>角色：</label>
+<select id="roleId" name="roleId">
+	<?php 
+	$q = "select * from t_role    order by id asc";                   //SQL查询语句
+	mysql_query($char_set);
+	$rs = mysql_query($q, $con);                     //获取数据集
+	//echo $q;
+	if(!$rs){die("Valid result!");}
+	
+	$i=0;
+	while($row = mysql_fetch_array($rs)) {
+	    if($row['id']==$roleId){
+	        $selected="selected";
+	    }else{
+	        $selected="";
+	    }
+	    echo"<option value='".$row['id']."' ".$selected.">".$row['name']."</option>\n";
+	}
+	?>
+	
+   <?php ?>
+</select>
 <br/>
 <br/><br/>
 

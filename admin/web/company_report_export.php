@@ -120,8 +120,18 @@ if($companyName!=""){
 }
 
 
-if($_SESSION["companyId"]!=0){
-    $sqlKey .= " and e.`company_id` = '".$_SESSION['companyId']."'";
+if($_SESSION['channel'] == "1"){
+
+    if(checkPower("25")){
+        $sqlKey .= " and e.`company_id` = '".$_SESSION['companyId']."'";
+    }
+
+}else{
+
+    if(checkPower("25")){
+        $sqlKey .= " and e.`company_id` = '".$_SESSION['companyId']."'";
+        $sqlKey .= " and (e.`id` = '". $_SESSION['userId']."' or e.`parent_id` = '".$_SESSION['userId']."')";
+    }
 }
 
 $Query = "SELECT sum(price) as price_sum,c.name as company_name

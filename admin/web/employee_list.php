@@ -8,7 +8,7 @@ $tel=$_GET['tel'];
 $parentName=$_GET['parentName'];
 $wechat=$_GET['wechat'];
 $userId=$_GET['userId'];
-
+//var_dump($_SESSION);
 $Page_size = 10;
 
 mysql_select_db($db_name, $con);          //选择数据库
@@ -47,9 +47,28 @@ if($userId!=""){
 }
 
 
+if($_SESSION['channel'] == "1"){
+
+    if(checkPower("17")){
+        $sqlKey .= " and e.`company_id` = '".$_SESSION['companyId']."'";
+    }
+
+}else{
+
+    if(checkPower("17")){
+        $sqlKey .= " and e.`company_id` = '".$_SESSION['companyId']."'";
+        $sqlKey .= " and (e.`id` = '". $_SESSION['userId']."' or e.`parent_id` = '".$_SESSION['userId']."')";
+    }
+}
+
+
+
+
+
 $Query = "Select count(*) as c from t_employee e left join t_company c on e.company_id=c.id 
             where e.is_del=0 $sqlKey";
-
+//echo $_SESSION["power"];
+//echo $Query;
 $result     = mysql_query($Query);
 $rs     = mysql_fetch_array( $result );
 $count = $rs["c"]; //条数
@@ -97,7 +116,13 @@ $content.="    <td height='18' >".$row['company_name']."</td>\n";
 $content.="    <td height='18' >".$row['tel']."</td>\n";
 $content.="    <td height='18' >".$row['wechat']."</td>\n";
 $content.="    <td height='18' >".$row['remark']."</td>\n";
-$content.="    <td height='18'><img src='../images/edit.gif'>[<a href=\"employee_edit.php?id=".$row['id']."&action=edit\">编辑</a>]</td>";
+$editStr="";
+if(checkPower("18")){
+    $editStr="<img src='../images/edit.gif'>[<a href=\"employee_edit.php?id=".$row['id']."&action=edit\">编辑</a>]";
+}
+
+
+$content.="    <td height='18'>$editStr<img src='../images/edit.gif'>[<a href=\"employee_tree.php?id=".$row['id']."&action=edit\">关系树</a>]</td>";
 $content.="</tr>\n";
 }
 $page_len = ($page_len % 2) ? $page_len : $pagelen + 1; // 页码个数
@@ -245,7 +270,7 @@ function delPost(id,type){
       <tr>
         <td width="15" height="30"><img src="../images/tab_03.gif" width="15" height="30" /></td>
         <td width="550" background="../images/tab_05.gif" class="tdStyle"><img src="../images/operatePanle.gif" width="16" height="16" /> <span class="tbTitle">操作面板>>管理</span></td>
-        <td background="../images/tab_05.gif" class="tdStyle tdNavMn"><img src="../images/001.gif" width="14" height="14" /><a href="employee_edit.php" >添加</a></td>
+        <td background="../images/tab_05.gif" class="tdStyle tdNavMn"><?php if(checkPower("18")){?><img src="../images/001.gif" width="14" height="14" /><a href="employee_edit.php" >添加</a><?php }?></td>
         <td width="14"><img src="../images/tab_07.gif" width="14" height="30" /></td>
       </tr>
     </table></td>
@@ -292,10 +317,10 @@ function delPost(id,type){
         <td width="15" height="30"><img src="../images/tab_03.gif" width="15" height="30"></td>
         <td width="275" background="../images/tab_05.gif" class="tdStyle"><img src="../images/311.gif" width="16" height="16"> <span class="tbTitle">公司列表</span></td>
         <td background="../images/tab_05.gif" class="tdStyle tdNavMn"><a href="javascript:void(0)" onclick="window.location.reload();"><img src="../images/refresh.gif" width="16" height="16"></a>
-          <input id="checkAll" type="checkbox" name="checkbox62" value="checkbox" onblur="selectAll(this);">
+         <?php if(checkPower("18")){?> <input id="checkAll" type="checkbox" name="checkbox62" value="checkbox" onblur="selectAll(this);">
           全选
           <input id="inverse" type="checkbox" name="inverse" value="checkbox">
-          反选  <img src="../images/083.gif" width="14" height="14"><font><a href="javascript:void(0)" onclick="delPost('-1','multi');">删除选中</a></font> </td>
+          反选  <img src="../images/083.gif" width="14" height="14"><font><a href="javascript:void(0)" onclick="delPost('-1','multi');">删除选中</a></font><?php }?> </td>
         <td width="14"><img src="../images/tab_07.gif" width="14" height="30"></td>
       </tr>
     </tbody></table></td>

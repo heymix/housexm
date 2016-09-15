@@ -1,4 +1,17 @@
-<?php session_start();?>
+<?php session_start();
+
+function checkStr($str){
+    $strArr=explode(",",$str);
+    $returnStr = false;
+    foreach ($strArr as $v){
+        if(strpos($_SESSION['power'], ",$v,")!==false){
+            $returnStr = true;
+            break;
+        }
+    }
+    return $returnStr;
+}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -119,38 +132,57 @@ function showmenu(list_num){
   <tr>
   		<td><div class="clear5"></div>
 <ul class="leftMenu">
-<?php if($_SESSION['companyId']==0) {?>
+    
 	<li><span onclick="showmenu(1)"><img src="../images/tool.gif" width="16" height="14" />基础信息</span>
 		<ul id="show1">
+		<?php if(checkStr("23")) {?>
         	<li><a href="javascript:void(0)" onclick="window.top.frames['mainFrame'].frames['main'].location = 'dict_list.php'"><img src="../images/add.gif" width="16" height="14" />数据字典</a></li>
+        <?php }?>
+        <?php if(checkStr("10,11,12")) {?>
          <li><a href="javascript:void(0)"  onclick="window.top.frames['mainFrame'].frames['main'].location = 'company_list.php'"><img src="../images/test.gif" width="16" height="15" />公司中介管理</a></li>
+         <?php }?>
+         <?php if(checkStr("13,14,15")) {?>
          <li><a href="javascript:void(0)"  onclick="window.top.frames['mainFrame'].frames['main'].location = 'project_list.php'"><img src="../images/test.gif" width="16" height="15" />项目管理</a></li>
+         <?php }?>
+         <?php if(checkStr("22")) {?>
          <li><a href="javascript:void(0)"  onclick="window.top.frames['mainFrame'].frames['main'].location = 'admin_list.php'"><img src="../images/test.gif" width="16" height="15" />管理员</a></li>
+         <?php }?>
+         <?php if(checkStr("31")) {?>
          <li><a href="javascript:void(0)"  onclick="window.top.frames['mainFrame'].frames['main'].location = 'role_list.php'"><img src="../images/test.gif" width="16" height="15" />角色管理</a></li>
+         <?php }?>
+         <?php if(checkStr("33,34")) {?>
          <li><a href="javascript:void(0)"  onclick="window.top.frames['mainFrame'].frames['main'].location = 'news_list.php'"><img src="../images/test.gif" width="16" height="15" />活动分享管理</a></li>
+         <?php }?>
+         <?php if(checkStr("36,37,38")) {?>
          <li><a href="javascript:void(0)"  onclick="window.top.frames['mainFrame'].frames['main'].location = 'news_client_list.php'"><img src="../images/test.gif" width="16" height="15" />活动客户查看</a></li>
+        <?php }?>
+
         </ul>    
     </li>
   
     <li><span  onclick="showmenu(9)"><img src="../images/exam.gif" width="16" height="14" />销售管理</span>
 		<ul id="show9">
+         <?php if(checkStr("16,17,18")) {?>
 			<li><a href="javascript:void(0)" onclick="window.top.frames['mainFrame'].frames['main'].location = 'employee_list.php'"><img src="../images/add.gif" width="16" height="14" />经纪人管理</a></li>
+			<?php }?>
+            <?php if(checkStr("19,20,21")) {?>
 			<li><a href="javascript:void(0)" onclick="window.top.frames['mainFrame'].frames['main'].location = 'client_list.php'"><img src="../images/add.gif" width="16" height="14" />销售管理</a></li>
+            <?php }?>
         </ul>    
     </li>
-  <?php }?>
-  <?php if($_SESSION['companyId']!=0) {?> 
-	<li><span  onclick="showmenu(2)"><img src="../images/product.gif" width="16" height="14" />客户管理</span>
-		<ul id="show2">
-			<li><a href="javascript:void(0)"  onclick="window.top.frames['mainFrame'].frames['main'].location = 'client_list.php'"><img src="../images/add.gif" width="16" height="14" />客户管理</a></li>
-        </ul>    
-    </li>
-    <?php }?>
+
+
     <li ><span onclick="showmenu(3)"><img src="../images/home.gif" width="16" height="14" />统计分析</span>
 		<ul id="show3">
+		      <?php if(checkStr("24,25")) {?>
 			<li><a href="javascript:void(0)" onclick="window.top.frames['mainFrame'].frames['main'].location = 'company_report.php'"><img src="../images/add.gif" width="16" height="14" />公司统计</a></li>
+			<?php }?>
+            <?php if(checkStr("26,27")) {?>
 			<li><a href="javascript:void(0)" onclick="window.top.frames['mainFrame'].frames['main'].location = 'project_report.php'"><img src="../images/add.gif" width="16" height="14" />项目统计</a></li>
+			<?php }?>
+            <?php if(checkStr("28,29")) {?>
 			<li><a href="javascript:void(0)" onclick="window.top.frames['mainFrame'].frames['main'].location = 'employee_report.php'"><img src="../images/add.gif" width="16" height="14" />经纪人统计</a></li>
+            <?php }?>
         </ul>    
     </li>
 
