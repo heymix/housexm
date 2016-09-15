@@ -23,7 +23,7 @@ function getSon($id=0){
     if($result && mysql_affected_rows()){//如果有子类
         while($rows=mysql_fetch_assoc($result)){ //循环记录集
              //调用函数，传入参数，继续查询下级
-            if(!empty(getSon($rows['id']))){
+            if(getSon($rows['id'])!==NULL){
                 $rows['children'] = getSon($rows['id']);
             }else{
                 $rows['isParent'] =true;   
@@ -45,7 +45,7 @@ function getParent($parentId=0){
     if($result && mysql_affected_rows()){//如果有子类
         while($rows=mysql_fetch_assoc($result)){ //循环记录集
             //调用函数，传入参数，继续查询下级
-            if(!empty(getParent($rows['parentId']))){
+            if(getParent($rows['parentId'])!==NULL){
                 $rows['children'] = getParent($rows['parentId']);
             }else{
                 $rows['isParent'] =true;
