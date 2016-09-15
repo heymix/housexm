@@ -65,7 +65,7 @@ if($channel==1){
     }
     
     $query = "select e.id,e.company_id,c.name as company_name from t_employee as e left join t_company as c on e.company_id=c.id 
-    where e.user_name='$userName' and e.password='". md5($password) ."' and t.company_id=1 and e.is_del=0";
+    where e.user_name='$userName' and e.password='". md5($password) ."' and e.company_id=1 and e.is_del=0";
     //echo $query;//SQL查询语句
     mysql_query($char_set);
     $rs = mysql_query($query, $con);                     //获取数据集
