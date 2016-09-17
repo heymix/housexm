@@ -52,6 +52,7 @@ $(document).ready(function(){
 				function(data,st){
     				var resultArr=data.split("|");
     				alert(resultArr[1]);
+    				window.location.href="index.php";
 				});
 		}
 </script>
