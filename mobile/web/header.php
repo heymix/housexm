@@ -11,7 +11,7 @@
         <li><a href="#" onclick='window.location.href="client_list.php"'>查询</a></li>
         <li><a href="#" onclick='window.location.href="news_list.php"'>活动</a></li>
         <li><a href="#" onclick='window.location.href="news_client_list.php"'>活动客户</a></li>
-        <li><a href="#" onclick="alert('<?php echo $tuiCode;?>');">我的推荐码</a></li>
+        <li><a href="#" onclick="alert('<?php echo $tuiCode;?>');">我的服务代码</a></li>
         <li><a href="#" onclick='window.location.href="password_edit.php"'>修改密码</a></li>
         <li><a href="#" onclick='window.location.href="../index.php?action=logout"'>退出</a></li>
     </ul>
