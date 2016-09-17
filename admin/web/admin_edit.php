@@ -198,7 +198,7 @@ if ($action=="edit"){
 	    }else{
 	        $selected="";
 	    }
-	    echo"<option value='".$row['id']."' ".$selected.">".$row['name']."</option>\n";
+	    echo"<option value='".$row['id']."' ".$selected." >".$row['name']."--".$row['remark']."</option>\n";
 	}
 	?>
 	
