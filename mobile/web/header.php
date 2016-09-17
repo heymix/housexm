@@ -2,7 +2,7 @@
   <?php $tuiCode=$_COOKIE["userId"];?>
      <a href="#" onClick="window.history.go(-1);" data-role="button">返回</a><h1>广嘉汇众地产服务中心</h1>
      
-     <a href="#menu" data-rel="popup" data-role="button">...</a>
+     <a href="#menu" data-rel="popup" data-role="button">菜单</a>
   <div data-role="popup" id="menu" data-theme="a">
     <ul data-role="listview" data-theme="c" data-inset="true">
         <li data-role="divider" data-theme="a">菜单</li>
