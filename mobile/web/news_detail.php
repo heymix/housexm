@@ -65,11 +65,11 @@ wx.ready(function () {
 	    imgUrl: 'http://<?php echo $_SERVER['HTTP_HOST'];?>/housexm/upload/images/1473318065.jpg', // 分享图标
 	    success: function () { 
 	        // 用户确认分享后执行的回调函数
-	        alert("开始");
+	        //alert("开始");
 	    },
-	    cancel: function () { 
+	    cancel: function () {
 	        // 用户取消分享后执行的回调函数
-	    	alert("结束");
+	    	//alert("结束");
 	    }
 	});
 
@@ -83,11 +83,11 @@ wx.ready(function () {
 	    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
 	    success: function () { 
 	        // 用户确认分享后执行的回调函数
-	    	alert("开始");
+	    	//alert("开始");
 	    },
 	    cancel: function () { 
 	        // 用户取消分享后执行的回调函数
-	    	alert("结束");
+	    	//alert("结束");
 	    }
 	});
     wx.error(function(res){
