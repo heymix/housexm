@@ -160,7 +160,7 @@ if ($action=="edit"){
 	}
 	?>
 </select></br></br>
-<label style="width:120px"><span></span>　图片：</label><img id="imageShow" src="<?php echo $image;?>" width="70" height="70"><input type="hidden" id="image" name="image" style="width:200px" value="<?php echo $image;?>" readonly='true'></br>
+<label style="width:120px"><span></span>　图片：</label><img id="imageShow" src="<?php echo "../../upload/images/".$image;?>" width="70" height="70"><input type="hidden" id="image" name="image" style="width:200px" value="<?php echo $image;?>" readonly='true'></br>
 <iframe src="upload.php" name="uploadFrame" marginwidth='0' marginheight='0' frameborder='0' scrolling='none' width="370px" height="40px"></iframe></br></br>
 <label style="width:120px"><span></span>　内容：</label> <input id="content" name="content" value="" type=hidden></br>
 <script id="editor" type="text/plain" style="width:800px;height:500px;"><?php echo $content?></script>

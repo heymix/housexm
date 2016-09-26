@@ -65,7 +65,7 @@ $content.="    </div></td>\n";
 $content.="    <td height='18' >".$row['title']."</td>\n";
 $content.="    <td height='18' >".$row['category_name']."</td>\n";
 $content.="    <td height='18' >".$row['desc']."</td>\n";
-$content.="    <td height='18' ><img src='".$row['image']."'height='50px',width='50px';></td>\n";
+$content.="    <td height='18' ><img src='../../upload/images/".$row['image']."'height='50px',width='50px';></td>\n";
 $editStr="";
 if(checkPower("33")){
     $editStr="<img src='../images/edit.gif'>[<a href=\"news_edit.php?id=".$row['id']."&action=edit\">编辑</a>]";

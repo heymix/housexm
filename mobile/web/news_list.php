@@ -61,7 +61,7 @@ $content="";
 while ($row = mysql_fetch_array($result)) {
 
 $content.="<li onclick='window.location.href=\"news_detail.php?id=".$row["id"]."\"'>\n";
-$content.="<img src='".$row["image"]."' />\n";
+$content.="<img src='../../upload/images/".$row["image"]."' />\n";
 $content.="<h3>".$row["title"]."</h3>\n";
 $content.="<p>".$row["desc"]."</p>\n";
 if(!empty($row['update_time'])){

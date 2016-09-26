@@ -49,7 +49,7 @@ $ticket=sha1($string1);
 <script type="text/javascript">
 
 wx.config({
-    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
     appId: '<?php echo $appid->appid;?>', // 必填，公众号的唯一标识
     timestamp: <?php echo $time;?>, // 必填，生成签名的时间戳
     nonceStr: '<?php echo $nonceStr;?>', // 必填，生成签名的随机串
@@ -60,9 +60,9 @@ wx.config({
 
 wx.ready(function () {
 	wx.onMenuShareTimeline({
-	    title: '测试测试', // 分享标题
+	    title: '<?php echo $title;?>', // 分享标题
 	    link: 'http://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];?>', // 分享链接
-	    imgUrl: 'http://<?php echo $_SERVER['HTTP_HOST'];?>/housexm/upload/images/1473318065.jpg', // 分享图标
+	    imgUrl: 'http://<?php echo $_SERVER['HTTP_HOST']."/housexm/upload/images/$image"?>', // 分享图标
 	    success: function () { 
 	        // 用户确认分享后执行的回调函数
 	        //alert("开始");
@@ -75,10 +75,10 @@ wx.ready(function () {
 
 
 	wx.onMenuShareAppMessage({
-	    title: '测试测试', // 分享标题
-	    desc: '分享给朋友', // 分享描述
+	    title: '<?php echo $title;?>', // 分享标题
+	    desc: '<?php echo $desc;?>', // 分享描述
 	    link: 'http://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];?>', // 分享链接
-	    imgUrl: 'http://<?php echo $_SERVER['HTTP_HOST'];?>/housexm/upload/images/1473318065.jpg', // 分享图标
+	    imgUrl: 'http://<?php echo $_SERVER['HTTP_HOST']."/housexm/upload/images/$image";?>', // 分享图标
 	    type: 'link', // 分享类型,music、video或link，不填默认为link
 	    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
 	    success: function () { 
@@ -92,7 +92,7 @@ wx.ready(function () {
 	});
     wx.error(function(res){
         // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-        alert("errorMSG:"+JSON.stringify(res));
+        //alert("errorMSG:"+JSON.stringify(res));
     });
 });
 

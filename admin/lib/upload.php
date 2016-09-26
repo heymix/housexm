@@ -24,7 +24,7 @@ $fileName = time().substr($name, strpos($name, '.') ,strlen($name));
 if(move_uploaded_file($file['tmp_name'],$upload_path.$fileName)){
      echo "上传成功!";
      echo "<script>";
-     echo "     window.parent.document.getElementById('image').value='../../$viturlPath$fileName';";
+     echo "     window.parent.document.getElementById('image').value='$fileName';";
       echo "     window.parent.document.getElementById('imageShow').setAttribute('src','../../$viturlPath$fileName');";
      echo "</script>";
 }else{
