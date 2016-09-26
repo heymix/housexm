@@ -97,6 +97,11 @@ wx.ready(function () {
 });
 
 </script>
+<style type="text/css">
+
+#nContent img{width:100%;}
+
+</style>
 </head>
 <body>
 <div data-role="page" id="page1">
@@ -107,7 +112,7 @@ wx.ready(function () {
      
   </div>
 
-  <div data-role="content">
+  <div id="nConten" data-role="content">
   <a href="#" onClick='window.location.href="../sign_up.php?promotionId=<?php echo $id;?>&parentId=<?php echo $userId;?>"' data-role="button">了解详情</a>
             <?php echo $content;?>
 
