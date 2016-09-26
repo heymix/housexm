@@ -99,7 +99,7 @@ wx.ready(function () {
 </script>
 <style type="text/css">
 
-#nContent img{width:100%;}
+#nConten img{width:100%;}
 
 </style>
 </head>
