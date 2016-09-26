@@ -320,7 +320,7 @@ function exportExcel(){
     <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tbody><tr>
         <td width="15" height="30"><img src="../images/tab_03.gif" width="15" height="30"></td>
-        <td width="275" background="../images/tab_05.gif" class="tdStyle"><img src="../images/311.gif" width="16" height="16"> <span class="tbTitle">公司列表</span></td>
+        <td width="275" background="../images/tab_05.gif" class="tdStyle"><img src="../images/311.gif" width="16" height="16"> <span class="tbTitle">项目信息报表</span></td>
         <td background="../images/tab_05.gif" class="tdStyle tdNavMn"><img src="../images/excel.gif" alt="导出" /><a href="#" onclick="exportExcel();">导出excel</a> </td>
         <td width="14"><img src="../images/tab_07.gif" width="14" height="30"></td>
       </tr>

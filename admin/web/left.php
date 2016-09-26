@@ -139,7 +139,7 @@ function showmenu(list_num){
         	<li><a href="javascript:void(0)" onclick="window.top.frames['mainFrame'].frames['main'].location = 'dict_list.php'"><img src="../images/add.gif" width="16" height="14" />数据字典</a></li>
         <?php }?>
         <?php if(checkStr("10,11,12")) {?>
-         <li><a href="javascript:void(0)"  onclick="window.top.frames['mainFrame'].frames['main'].location = 'company_list.php'"><img src="../images/test.gif" width="16" height="15" />公司中介管理</a></li>
+         <li><a href="javascript:void(0)"  onclick="window.top.frames['mainFrame'].frames['main'].location = 'company_list.php'"><img src="../images/test.gif" width="16" height="15" />渠道公司管理</a></li>
          <?php }?>
          <?php if(checkStr("13,14,15")) {?>
          <li><a href="javascript:void(0)"  onclick="window.top.frames['mainFrame'].frames['main'].location = 'project_list.php'"><img src="../images/test.gif" width="16" height="15" />项目管理</a></li>

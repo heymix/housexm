@@ -306,7 +306,7 @@ function delPost(id,type){
     <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tbody><tr>
         <td width="15" height="30"><img src="../images/tab_03.gif" width="15" height="30"></td>
-        <td width="275" background="../images/tab_05.gif" class="tdStyle"><img src="../images/311.gif" width="16" height="16"> <span class="tbTitle">公司列表</span></td>
+        <td width="275" background="../images/tab_05.gif" class="tdStyle"><img src="../images/311.gif" width="16" height="16"> <span class="tbTitle">在售项目信息</span></td>
         <td background="../images/tab_05.gif" class="tdStyle tdNavMn"><a href="javascript:void(0)" onclick="window.location.reload();"><img src="../images/refresh.gif" width="16" height="16"></a>
           <?php if(checkPower("15")){?><input id="checkAll" type="checkbox" name="checkbox62" value="checkbox" onblur="selectAll(this);">
           全选

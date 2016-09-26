@@ -69,7 +69,7 @@ if($priceStatus!=""){
 }
 
 if($trueName!=""){
-    $sqlKey .= " and e.`name` like '%$trueName%'";
+    $sqlKey .= " and e.`true_name` like '%$trueName%'";
 }
 
 if($companyName!=""){
@@ -100,7 +100,14 @@ if($_SESSION['channel'] == "1"){
 }
 
 
-$Query = "Select count(*) as c from t_client as t where t.is_del=0 $sqlKey";
+$Query = "Select count(*) as c from  t_client as t 
+left join t_project as p on t.project_id=p.id
+left join t_employee as e on t.employee_id=e.id 
+left join t_company as c on e.company_id=c.id
+left join t_dictionary as d_ps on t.price_status=d_ps.value and d_ps.type='price_status'
+left join t_dictionary as d_checks on t.check_status=d_checks.value and d_checks.type='check_status'
+where t.is_del=0 $sqlKey";
+
 $result     = mysql_query($Query);
 $rs     = mysql_fetch_array($result);
 $count = $rs["c"]; //条数
@@ -222,7 +229,7 @@ $key .= '</div>';
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>公司管理</title>
+<title>销售管理</title>
 <link href="../css/main.css" rel="stylesheet" type="text/css" />
 <script language="javascript" src="../inc/jquery-1.7.1.min.js"></script>
 <script src="../jquery/jquery.bgiframe.min.js" type="text/javascript" charset='utf-8'></script>
@@ -421,7 +428,7 @@ function delPost(id,type){
     <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tbody><tr>
         <td width="15" height="30"><img src="../images/tab_03.gif" width="15" height="30"></td>
-        <td width="275" background="../images/tab_05.gif" class="tdStyle"><img src="../images/311.gif" width="16" height="16"> <span class="tbTitle">公司列表</span></td>
+        <td width="275" background="../images/tab_05.gif" class="tdStyle"><img src="../images/311.gif" width="16" height="16"> <span class="tbTitle">销售列表</span></td>
         <td background="../images/tab_05.gif" class="tdStyle tdNavMn"><?php if(checkPower("21")){?><a href="javascript:void(0)" onclick="window.location.reload();"><img src="../images/refresh.gif" width="16" height="16"></a>
           <input id="checkAll" type="checkbox" name="checkbox62" value="checkbox" onblur="selectAll(this);">
           全选
