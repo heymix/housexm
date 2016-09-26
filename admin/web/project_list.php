@@ -251,11 +251,10 @@ function delPost(id,type){
       <tr>
         <td width="9" background="../images/tab_12.gif">&nbsp;</td>
         <td bgcolor="#f3ffe3"  class="tdStyle"><form method="post" id="searchForm" name="searchForm" style="line-height:28px" >
-        <label style="width:120px"><span ></span>  名称：</label><input type="text" id="name" name="name" style="width:200px" value="<?php echo $name?>"> 
-        	<label style="width:120px"><span ></span> 简称：</label><input type="text" id="simpleName" name="simpleName" style="width:200px" value="<?php echo $simple_name?>"> 
-        	<label style="width:120px"><span ></span> 地址：</label><input type="text" id="address" name="address" style="width:200px" value="<?php echo $address?>">  <br>
-        	<label style="width:120px"><span ></span> 联系人：</label><input type="text" id="contact" name="contact" style="width:200px" value="<?php echo $contact?>">
-        	<label style="width:120px"><span ></span> 电话：</label><input type="text" id="tel" name="tel" style="width:200px" value="<?php echo $tel?>">
+        <label style="width:120px"><span ></span>  项目名称：</label><input type="text" id="name" name="name" style="width:200px" value="<?php echo $name?>"> 
+        	<label style="width:120px"><span ></span> 项目地址：</label><input type="text" id="address" name="address" style="width:200px" value="<?php echo $address?>">  <br>
+        	<label style="width:120px"><span ></span> 置业顾问：</label><input type="text" id="contact" name="contact" style="width:200px" value="<?php echo $contact?>">
+        	<label style="width:120px"><span ></span> 售楼处电话：</label><input type="text" id="tel" name="tel" style="width:200px" value="<?php echo $tel?>">
         	<label style="width:120px"><span></span> 类别：</label>
 <select id="houseType" name="houseType">
 	<?php 
