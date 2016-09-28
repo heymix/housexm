@@ -6,7 +6,7 @@ $appid= new WxAppid();
 
 
 
-$userId=$_COOKIE["userId"];
+$userId=$_GET["parentId"];
 $id=$_GET["id"];    
 if(is_numeric($id)){
     mysql_select_db($db_name, $con);          //选择数据库

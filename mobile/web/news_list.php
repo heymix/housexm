@@ -3,6 +3,7 @@
 $title=$_GET['title'];
 $desc=$_GET['desc'];
 $category=$_GET['category'];
+$parentId=$_COOKIE["userId"];
 
 $Page_size = 10;
 
@@ -60,7 +61,7 @@ $result = mysql_query($sql);
 $content="";
 while ($row = mysql_fetch_array($result)) {
 
-$content.="<li onclick='window.location.href=\"news_detail.php?id=".$row["id"]."\"'>\n";
+$content.="<li onclick='window.location.href=\"news_detail.php?id=".$row["id"]."&parentId=$parentId\"'>\n";
 $content.="<img src='../../upload/images/".$row["image"]."' />\n";
 $content.="<h3>".$row["title"]."</h3>\n";
 $content.="<p>".$row["desc"]."</p>\n";
