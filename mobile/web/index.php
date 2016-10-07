@@ -116,6 +116,63 @@ if ($page < $pages) {
     $key .= "最后一页"; // 最后一页
 }
 $key .= '</div>';
+
+
+
+
+/**
+ *
+ * @param unknown $title 标题
+ * @param unknown $type 字典类型
+ * @param unknown $cate input 类别
+ * @param unknown $db_name 数据库名
+ * @param unknown $con 连接数据库
+ * @param unknown $char_set
+ * @param unknown $dateStr 修改数据
+ * @return string
+ */
+function checkbox($title,$type,$cate,$db_name,$con,$char_set,$dateStr){
+
+    $nameArr="";
+    if ($cate==""||$cate=="checkbox"){
+        $cate="checkbox";
+        $nameArr="[]";
+    }else{
+        $nameArr="";
+    }
+    mysql_select_db($db_name, $con);          //选择数据库
+    $returnStr="";
+    $q = "select * from t_dictionary where `type`='$type' order by order_id asc";                   //SQL查询语句
+    mysql_query($char_set);
+    $rs = mysql_query($q, $con);                     //获取数据集
+    //echo $q;
+    if(!$rs){die("Valid result!");}
+
+    $returnStr.="<fieldset data-role='controlgroup'>\n";
+    $returnStr.="<legend>".$title."：</legend>\n";
+    $i=0;
+    while($row = mysql_fetch_array($rs)) {
+        $i=$i+1;
+        $checked="";
+        if($cate=="checkbox"){
+            if(strpos($dateStr, ",".$row["value"].",") !== false){
+                $checked="checked";
+            }
+        }
+        if($cate=="radio"){
+            if($row["value"]==$dateStr){
+                $checked="checked";
+            }
+        }
+
+
+        $returnStr.="<label for='$type$i'>".$row["name"]."</label>\n";
+        $returnStr.="<input type='$cate' name='$type$nameArr' id='$type$i' value='".$row["value"]."' $checked>\n";
+    }
+    $returnStr.=" </fieldset>";
+    return $returnStr;
+}
+?>
 ?>  
 <!DOCTYPE html>
 <html>
@@ -138,21 +195,23 @@ $(document).ready(function(){
 function submitForm(){
 	//alert("ddd");
 	
-	
-	if($("#visitDate").val().length==0){
-		$("#errMsg").html('日期不能为空！');
+
+	if($("#name").val().length==0){
+		$("#errMsg").html('姓名不能为空！');
+		return false;
+	}
+	if($("#tel").val().length==0){
+		$("#errMsg").html('手号码不能为空！');
 		return false;
 	}
 
-    $("#errMsg").html('正在提交请稍后....！');
+$("#errMsg").html('正在提交请稍后....！');
 
 	$.post(	"../lib/client_edit.php", 
 		$("#editForm").serialize(), 
 		function(data,st){
 			var resultArr=data.split("|");
 			$("#errMsg").html(resultArr[1]);
-			$("#myPopup").popup('close');
-			window.location.reload();
 		});
 }
 function popOpen(id){
@@ -172,11 +231,23 @@ function popOpen(id){
 
   <div data-role="content">
   
-  <form id="searchForm" name="searchForm"  method="post" style="display: none" >
-  	项目: <select name="projectId" id="projectId">
-  	<option value="">请选择</option>
+  
+        <ul data-role="listview" data-split-icon="delete">
+            <li data-role="list-divider">活动列表</li>
+            <?php echo $content;?>
+        </ul>
+        <br>
+    <?php echo $key;?>
+  </div>
+<p id="errMsg" style="color:#F00"></p>
+  	<form id="editForm" name="editForm"  method="post" >
+  	<?php if($action=='edit'){
+  	echo "<input id='project' name='project' type='hidden' value='$projectId'>";
+  	}
+  	    ?>
+  	项目: <select <?php if($action=='edit') echo "disabled";?>  name="project" id="project">
   	      <?php 
-        	$q = "select * from t_project order by id desc";                   //SQL查询语句
+        	$q = "select * from t_project where is_del=0 order by id desc";                   //SQL查询语句
         	mysql_query($char_set);
         	$rs = mysql_query($q, $con);                     //获取数据集
         	//echo $q;
@@ -193,18 +264,36 @@ function popOpen(id){
         	}
         	?>
   </select>
-	姓名: <input type="text" name="name" id="name" value="<?php echo $name;?>" />
-	电话: <input type="text" name="tel" id="tel" value="<?php echo $tel;?>"/>
-    <a href="#" data-role="button" onClick="searchPost();"><img src="../images/seek.gif">查询</a>
-	</form><br>
-        <ul data-role="listview" data-split-icon="delete">
-            <li data-role="list-divider">活动列表</li>
-            <?php echo $content;?>
-        </ul>
-        <br>
-    <?php echo $key;?>
-  </div>
-
+  <input id="id" name="id" value="<?php echo $id?>" type=hidden>
+  <input id="action" name="action" value="<?php echo $action?>" type=hidden>
+	姓名: <input type="text" name="name" id="name" value="<?php echo $name;?>"/>
+	电话: <input type="text" name="tel" id="tel" value="<?php echo $tel;?>" />
+     <fieldset data-role="controlgroup">
+      <legend>请选择您的性别：</legend>
+        <label for="male">先生</label>
+        <input type="radio" name="sex" id="male" value="男" <?php if($sex=="男") echo "checked"?>>
+        <label for="female">女士</label>
+        <input type="radio" name="sex" id="female" value="女" <?php if($sex=="女") echo "checked"?>>	
+      </fieldset>
+      <?php 
+            echo checkbox("年龄","age","radio",$db_name,$con,$char_set,$age);
+            echo checkbox("家庭人口结构","family","radio",$db_name,$con,$char_set,$family);
+        	echo checkbox("区域","district","checkbox",$db_name,$con,$char_set,$district);
+        	echo checkbox("地铁","metro","checkbox",$db_name,$con,$char_set,$metro);
+        	echo "学校: <input type='text'' name='school_ext' id='school_ext' value='$school_ext'/>";
+        	echo checkbox("学校","school","checkbox",$db_name,$con,$char_set,$school);
+        	echo checkbox("类型","category","checkbox",$db_name,$con,$char_set,$category);
+        	echo checkbox("面积","hope_area","checkbox",$db_name,$con,$char_set,$hope_area);
+        	echo checkbox("热门","hot_type","checkbox",$db_name,$con,$char_set,$hot_type);
+        	echo checkbox("单价","hope_price","checkbox",$db_name,$con,$char_set,$hope_price);
+        	echo checkbox("总价","hope_total_price","checkbox",$db_name,$con,$char_set,$hope_total_price);
+        	echo checkbox("户型","house_type","checkbox",$db_name,$con,$char_set,$house_type);
+        	echo checkbox("热门商圈","hot_business","checkbox",$db_name,$con,$char_set,$hot_business);
+        	echo "近期购买意向楼盘: <input type='text'' name='intention_ext' id='intention_ext' value='$intention_ext'/>";
+        	echo checkbox("近期购买意向","intention","checkbox",$db_name,$con,$char_set,$intention);
+        	?>
+    <a href="#" data-role="button" onClick="submitForm();"><img src="../images/add.gif">保存</a>
+	</form>
 <?php include 'footer.php';?>
 </div> 
 
