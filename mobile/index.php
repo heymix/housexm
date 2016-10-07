@@ -6,7 +6,7 @@ if($_GET["action"]=="logout"){
 }
 if (isset($_COOKIE["userName"])){
     //重定向浏览器
-    header("Location: web/client_list.php");
+    header("Location: web/index.php");
     exit;
 }
 ?><!DOCTYPE html>
@@ -41,7 +41,7 @@ $(document).ready(function(){
 				//alert(data);
     				var resultArr=data.split("|");
     				if(resultArr[0]=="1"){
-    					window.location="web/client_list.php";
+    					window.location="web/index.php";
     				}
     				else{
     					$("#errMsg").html(data);
