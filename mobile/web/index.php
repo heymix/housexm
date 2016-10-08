@@ -239,61 +239,7 @@ function popOpen(id){
         <br>
     <?php echo $key;?>
   </div>
-<p id="errMsg" style="color:#F00"></p>
-  	<form id="editForm" name="editForm"  method="post" >
-  	<?php if($action=='edit'){
-  	echo "<input id='project' name='project' type='hidden' value='$projectId'>";
-  	}
-  	    ?>
-  	项目: <select <?php if($action=='edit') echo "disabled";?>  name="project" id="project">
-  	      <?php 
-        	$q = "select * from t_project where is_del=0 order by id desc";                   //SQL查询语句
-        	mysql_query($char_set);
-        	$rs = mysql_query($q, $con);                     //获取数据集
-        	//echo $q;
-        	if(!$rs){die("Valid result!");}
-        	
-        	$i=0;
-        	while($row = mysql_fetch_array($rs)) {
-        	    if($row['id']==$projectId){
-        	        $selected="selected";
-        	    }else{
-        	        $selected="";
-        	    }
-        	    echo"<option value='".$row['id']."' ".$selected.">".$row['name']."</option>\n";
-        	}
-        	?>
-  </select>
-  <input id="id" name="id" value="<?php echo $id?>" type=hidden>
-  <input id="action" name="action" value="save" type=hidden>
-	姓名: <input type="text" name="name" id="name" value="<?php echo $name;?>"/>
-	电话: <input type="text" name="tel" id="tel" value="<?php echo $tel;?>" />
-     <fieldset data-role="controlgroup">
-      <legend>请选择您的性别：</legend>
-        <label for="male">先生</label>
-        <input type="radio" name="sex" id="male" value="男" <?php if($sex=="男") echo "checked"?>>
-        <label for="female">女士</label>
-        <input type="radio" name="sex" id="female" value="女" <?php if($sex=="女") echo "checked"?>>	
-      </fieldset>
-      <?php 
-            echo checkbox("年龄","age","radio",$db_name,$con,$char_set,$age);
-            echo checkbox("家庭人口结构","family","radio",$db_name,$con,$char_set,$family);
-        	echo checkbox("区域","district","checkbox",$db_name,$con,$char_set,$district);
-        	echo checkbox("地铁","metro","checkbox",$db_name,$con,$char_set,$metro);
-        	echo "学校: <input type='text'' name='school_ext' id='school_ext' value='$school_ext'/>";
-        	echo checkbox("学校","school","checkbox",$db_name,$con,$char_set,$school);
-        	echo checkbox("类型","category","checkbox",$db_name,$con,$char_set,$category);
-        	echo checkbox("面积","hope_area","checkbox",$db_name,$con,$char_set,$hope_area);
-        	echo checkbox("热门","hot_type","checkbox",$db_name,$con,$char_set,$hot_type);
-        	echo checkbox("单价","hope_price","checkbox",$db_name,$con,$char_set,$hope_price);
-        	echo checkbox("总价","hope_total_price","checkbox",$db_name,$con,$char_set,$hope_total_price);
-        	echo checkbox("户型","house_type","checkbox",$db_name,$con,$char_set,$house_type);
-        	echo checkbox("热门商圈","hot_business","checkbox",$db_name,$con,$char_set,$hot_business);
-        	echo "近期购买意向楼盘: <input type='text'' name='intention_ext' id='intention_ext' value='$intention_ext'/>";
-        	echo checkbox("近期购买意向","intention","checkbox",$db_name,$con,$char_set,$intention);
-        	?>
-    <a href="#" data-role="button" onClick="submitForm();"><img src="../images/add.gif">保存</a>
-	</form>
+<a href="#" onclick='window.location.href="client_edit.php"' data-role="button">添加客户</a>
 <?php include 'footer.php';?>
 </div> 
 
