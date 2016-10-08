@@ -176,7 +176,7 @@ function popOpen(id){
   	项目: <select name="projectId" id="projectId">
   	<option value="">请选择</option>
   	      <?php 
-        	$q = "select * from t_project order by id desc";                   //SQL查询语句
+        	$q = "select * from t_project where is_del=0  order by id desc";                   //SQL查询语句
         	mysql_query($char_set);
         	$rs = mysql_query($q, $con);                     //获取数据集
         	//echo $q;
