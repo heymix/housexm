@@ -113,7 +113,12 @@ $(document).ready(function(){
 			//alert("ddd");
 			
 
-			if($("#name").val().length==0){
+	if($("#project").val().length==0){
+		$("#errMsg").html('项目不能为空！');
+		return false;
+	}
+    
+           if($("#name").val().length==0){
 				$("#errMsg").html('姓名不能为空！');
 				return false;
 			}
@@ -121,6 +126,7 @@ $(document).ready(function(){
 				$("#errMsg").html('手号码不能为空！');
 				return false;
 			}
+			
 		
 		$("#errMsg").html('正在提交请稍后....！');
 		
@@ -150,6 +156,7 @@ $(document).ready(function(){
   	}
   	    ?>
   	项目: <select <?php if($action=='edit') echo "disabled";?>  name="project" id="project">
+  	      <option value="">众筹项目活动选择</option>
   	      <?php 
         	$q = "select * from t_project where is_del=0 order by id desc";                   //SQL查询语句
         	mysql_query($char_set);

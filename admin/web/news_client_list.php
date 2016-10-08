@@ -2,7 +2,7 @@
 
 $name=$_GET['name'];
 $tel=$_GET['tel'];
-$trueName=$_GET['true_name'];
+$trueName=$_GET['trueName'];
 $promotionName=$_GET['promotionName'];
 
 $Page_size = 10;
@@ -246,7 +246,7 @@ function delPost(id,type){
       <tr>
         <td width="9" background="../images/tab_12.gif">&nbsp;</td>
         <td bgcolor="#f3ffe3"  class="tdStyle"><form method="post" id="searchForm" name="searchForm" style="line-height:28px" >
-        <label style="width:120px"><span ></span> 姓名：</label><input type="text" id="name" name="name" style="width:200px" value="<?php echo $name?>">
+        <label style="width:120px"><span ></span> 客户名：</label><input type="text" id="name" name="name" style="width:200px" value="<?php echo $name?>">
         <label style="width:120px"><span ></span> 电话：</label><input type="text" id="tel" name="tel" style="width:200px" value="<?php echo $tel?>"><br><br>
         <label style="width:120px"><span ></span> 活动：</label><input type="text" id="promotionName" name="promotionName" style="width:200px" value="<?php echo $promotionName?>">
         <label style="width:120px"><span ></span> 经纪人：</label><input type="text" id="trueName" name="trueName" style="width:200px" value="<?php echo $trueName?>">

@@ -3,7 +3,7 @@
 $userName=$_GET['userName'];
 $trueName=$_GET['trueName'];
 $companyName=$_GET['companyName'];
-$companyName=$_GET['address'];
+$address=$_GET['address'];
 $tel=$_GET['tel'];
 $parentName=$_GET['parentName'];
 $wechat=$_GET['wechat'];
@@ -39,7 +39,7 @@ if($wechat!=""){
 }
 
 if($parentName!=""){
-    $sqlKey .= " and ep.`name` like '%parentName%'";
+    $sqlKey .= " and ep.`true_name` like '%$parentName%'";
 }
 
 if($userId!=""){
@@ -66,6 +66,7 @@ if($_SESSION['channel'] == "1"){
 
 
 $Query = "Select count(*) as c from t_employee e left join t_company c on e.company_id=c.id 
+                                                left join t_employee ep on e.parent_id=ep.id
             where e.is_del=0 $sqlKey";
 //echo $_SESSION["power"];
 //echo $Query;
@@ -93,6 +94,7 @@ $sql = "select e.*,c.name as company_name,ep.true_name as parent_name from t_emp
             left join t_company c on e.company_id=c.id 
             left join t_employee ep on e.parent_id=ep.id
             where e.is_del=0 $sqlKey order by e.id desc limit $offset,$Page_size";
+//echo $sql;
 $result = mysql_query($sql);
 $content="";
 while ($row = mysql_fetch_array($result)) {

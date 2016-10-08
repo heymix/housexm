@@ -174,7 +174,7 @@ function popOpen(id){
   
   <form id="searchForm" name="searchForm"  method="post" style="display: none" >
   	项目: <select name="projectId" id="projectId">
-  	<option value="">请选择</option>
+  	<option value="">众筹项目活动选择</option>
   	      <?php 
         	$q = "select * from t_project where is_del=0  order by id desc";                   //SQL查询语句
         	mysql_query($char_set);
