@@ -211,7 +211,7 @@ $("#errMsg").html('正在提交请稍后....！');
 		$("#editForm").serialize(), 
 		function(data,st){
 			var resultArr=data.split("|");
-			$("#errMsg").html(resultArr[1]);
+			alert(resultArr[1]);
 		});
 }
 function popOpen(id){
@@ -265,7 +265,7 @@ function popOpen(id){
         	?>
   </select>
   <input id="id" name="id" value="<?php echo $id?>" type=hidden>
-  <input id="action" name="action" value="<?php echo $action?>" type=hidden>
+  <input id="action" name="action" value="save" type=hidden>
 	姓名: <input type="text" name="name" id="name" value="<?php echo $name;?>"/>
 	电话: <input type="text" name="tel" id="tel" value="<?php echo $tel;?>" />
      <fieldset data-role="controlgroup">

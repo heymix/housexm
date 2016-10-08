@@ -146,7 +146,7 @@ if ($action==="save"){
         $query="insert into t_client (`name`,`tel`,`project_id`,`employee_id`,`create_user`,`create_time` $filedStr)values 
                                     ('$name','$tel','$projectId','$operateUser','$operateUser',now() $valueStr)";
         mysql_query($query,$con);
-        echo "1|添加成功！$query";
+        echo "1|添加成功！";
     }
 }
 if($action==="edit"){

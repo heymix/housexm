@@ -129,6 +129,7 @@ $(document).ready(function(){
 				function(data,st){
     				var resultArr=data.split("|");
     				$("#errMsg").html(resultArr[1]);
+    				alert(resultArr[1]);
 				});
 		}
 </script>
