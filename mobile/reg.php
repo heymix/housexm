@@ -30,7 +30,10 @@ $(document).ready(function(){
         		alert("姓名不能为空！");
         		return false;
         	}
-        
+        	if($("#companyId").val()==""){
+        		alert("请选择公司！");
+        		return false;
+        	}
   
 			if($("#tel").val().length==0){
 				alert('手号码不能为空！');
@@ -70,7 +73,12 @@ $(document).ready(function(){
   <div data-role="content">
   <p id="errMsg" style="color:#F00"></p>
   	<form id="editForm" name="editForm"  method="post" >
-  	选择公司: <select <?php if($action=='edit') echo "disabled";?>  name="companyId" id="companyId">
+  	
+  <input id="action" name="action" value="<?php echo $action?>" type=hidden>
+        用户名: <input type="text" name="userName" id="userName" />
+	姓名: <input type="text" name="trueName" id="trueName" />
+	选择公司: <select <?php if($action=='edit') echo "disabled";?>  name="companyId" id="companyId">
+	<option value="">请选择公司</option>
   	      <?php 
         	$q = "select * from t_company where is_del=0 order by pinyin_name asc";                   //SQL查询语句
         	mysql_query($char_set);
@@ -89,9 +97,6 @@ $(document).ready(function(){
         	}
         	?>
   </select>
-  <input id="action" name="action" value="<?php echo $action?>" type=hidden>
-        用户名: <input type="text" name="userName" id="userName" />
-	姓名: <input type="text" name="trueName" id="trueName" />
 	电话: <input type="text" name="tel" id="tel" />
 	微信: <input type="text" name="wechat" id="wechat" />
 	推荐码: <input <?php if(!empty($parentId)) echo ""?> type="text" name="parentId" id="parentId" value="<?php echo$parentId;?>" />
