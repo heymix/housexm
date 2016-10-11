@@ -88,6 +88,7 @@ $content.="    <td height='18' >".$row['promotion_name']."</td>\n";
 $content.="    <td height='18' >".$row['true_name']."(".$row['user_name'].")</td>\n";
 $content.="    <td height='18' >".$row['name']."</td>\n";
 $content.="    <td height='18' >".$row['tel']."</td>\n";
+$content.="    <td height='18' >".$row['create_time']."</td>\n";
 //$content.="    <td height='18'><img src='../images/edit.gif'>[<a href=\"news_edit.php?id=".$row['id']."&action=edit\">编辑</a>]</td>";
 $content.="</tr>\n";
 }
@@ -299,6 +300,7 @@ function delPost(id,type){
               <th  height="26">经纪人(用户名)</th>
               <th  height="26">客户名</th>
               <th  height="26">电话</th>
+              <th  height="26">注册时间</th>
               </tr>
            
        <?php echo $content?>
