@@ -14,7 +14,7 @@ $operateUser=$_SESSION["userId"];
 //echo $action;
 //echo $db_name;
 /* echo $type.$name.$value.$orderId; */
-var_dump($name);
+//var_dump($name);
 
 mysql_select_db($db_name, $con);          //选择数据库
 mysql_query($char_set);

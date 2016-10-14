@@ -113,7 +113,7 @@ if ($action=="edit"){
 							if(resultArr[0]=="1"){
 								alert(resultArr[1]);
 								
-								window.location.reload();
+							    window.location.href='admin_list.php';
 								resetForm();
 							}
 							else{

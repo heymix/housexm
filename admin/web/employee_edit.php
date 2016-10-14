@@ -112,7 +112,7 @@ if ($action=="edit"){
 							var resultArr=data.split("|");
 							if(resultArr[0]=="1"){
 								alert(resultArr[1]);
-								
+								window.location.href='employee_list.php';
 								//window.location.reload();
 								//resetForm();
 							}

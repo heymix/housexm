@@ -113,8 +113,8 @@ if ($action=="edit"){
 							var resultArr=data.split("|");
 							if(resultArr[0]=="1"){
 								alert(resultArr[1]);
-								
-								window.location.reload();
+								window.location.href='company_list.php';
+								//window.location.reload();
 								resetForm();
 							}
 							else{
