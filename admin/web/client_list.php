@@ -151,7 +151,12 @@ $content.="    <td height='18' >".$row['tel']."</td>\n";
 $content.="    <td height='18' >".$row['company_name']."</td>\n";
 $content.="    <td height='18' >".$row['true_name']."(".$row['user_name'].")</td>\n";
 $content.="    <td height='18' >".$row['employee_tel']."</td>\n";
-$content.="    <td height='18' >".$row['check_status_name']."</td>\n";
+if(!empty($row['create_time'])){
+    $create_time=date("Y-m-d",strtotime($row['create_time']));
+}else{
+    $create_time="";
+}
+$content.="    <td height='18' >".$create_time."</td>\n";
 if(!empty($row['check_time'])){
     $check_time=date("Y-m-d",strtotime($row['check_time']));
 }else{
@@ -176,7 +181,7 @@ $editStr="";
 if(checkPower("21")){
     $editStr="<img src='../images/edit.gif'>[<a href=\"client_edit.php?id=".$row['id']."&action=edit\">编辑</a>]";
 }
-$content.="    <td height='18'>$editStr</td>";
+$content.="    <td height='18'>$editStr<img src='../images/edit.gif'>[<a href=\"employee_tree.php?id=".$row['employee_id']."&action=edit\">关系树</a>]</td>";
 $content.="</tr>\n";
 }
 $page_len = ($page_len % 2) ? $page_len : $pagelen + 1; // 页码个数
@@ -453,7 +458,7 @@ function delPost(id,type){
               <th  height="26">公司</th>
               <th height="26">经纪人姓名(用户名)</th>
               <th  height="26">经纪人电话</th>
-              <th height="26">签约状态</th>
+              <th height="26">录入时间</th>
               <th  height="26">签约时间</th>
               <th  height="26">金额</th>
               <th  height="26">面积</th>
