@@ -80,7 +80,7 @@ $(document).ready(function(){
 	选择公司: <select <?php if($action=='edit') echo "disabled";?>  name="companyId" id="companyId">
 	<option value="">请选择公司</option>
   	      <?php 
-        	$q = "select * from t_company where is_del=0 order by pinyin_name asc";                   //SQL查询语句
+        	$q = "select * from t_company where is_del=0  order by pinyin_name asc";                   //SQL查询语句
         	mysql_query($char_set);
         	$rs = mysql_query($q, $con);                     //获取数据集
         	//echo $q;
@@ -93,7 +93,7 @@ $(document).ready(function(){
         	    }else{
         	        $selected="";
         	    }
-        	    echo"<option value='".$row['id']."' ".$selected.">".$row['name']."</option>\n";
+        	    echo"<option value='".$row['id']."' ".$selected.">".($row['id']==1?"独立经纪人":$row['id'])."</option>\n";
         	}
         	?>
   </select>
