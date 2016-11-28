@@ -199,6 +199,7 @@ function delPost(id,type){
 						}
 						else{
 							alert(resultArr[1]);
+							window.location.reload();
 							loading.hide();
 						}	
 				});

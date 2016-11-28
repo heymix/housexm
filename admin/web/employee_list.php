@@ -254,11 +254,17 @@ function delPost(id,type){
 						}
 						else{
 							alert(resultArr[1]);
+							window.location.reload();
 							loading.hide();
 						}	
 				});
 		
 	}	
+}
+
+function exportExcel(){
+	if(!confirm("确认导出数据吗？")) return false;
+	window.location.href="employee_list_export.php?1=1&"+$("#searchForm").serialize();
 }
 </script>
 
@@ -322,7 +328,7 @@ function delPost(id,type){
          <?php if(checkPower("18")){?> <input id="checkAll" type="checkbox" name="checkbox62" value="checkbox" onblur="selectAll(this);">
           全选
           <input id="inverse" type="checkbox" name="inverse" value="checkbox">
-          反选  <img src="../images/083.gif" width="14" height="14"><font><a href="javascript:void(0)" onclick="delPost('-1','multi');">删除选中</a></font><?php }?> </td>
+          反选  <img src="../images/083.gif" width="14" height="14"><font><a href="javascript:void(0)" onclick="delPost('-1','multi');">删除选中</a></font><?php }?> <img src="../images/excel.gif" width="14" height="14"><font><a href="javascript:void(0)" onclick="exportExcel();">导出excel</a></font></td>
         <td width="14"><img src="../images/tab_07.gif" width="14" height="30"></td>
       </tr>
     </tbody></table></td>

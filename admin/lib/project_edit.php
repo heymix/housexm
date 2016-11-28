@@ -125,13 +125,13 @@ if ($action==="save"){
         $password=md5($password);
         $query="insert into t_project (`name`,`simple_name`,`address`,`house_type`,`contact`,`tel`,`remark`,`create_user`,`create_time` $filedStr)values ('$name','$simpleName','$address','$houseType','$contact','$tel','$remark','$operateUser',now() $valueStr)";
         mysql_query($query,$con);
-        echo "1|添加成功！$query";
+        echo "1|添加成功！";
     }
 }
 if($action==="edit"){
     $query = "update t_project set `simple_name`='$simpleName',`tel`='$tel',`remark`='$remark',`contact`='$contact',`address`='$address',update_time=now(),update_user='$operateUser' $updateSql where id=$id";
     mysql_query($query,$con);
-    echo "1|修改成功！$query";
+    echo "1|修改成功！";
 }
 if($action==="del"){
     $idArr="";

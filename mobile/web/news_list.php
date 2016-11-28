@@ -207,7 +207,7 @@ function popOpen(id){
 
 <?php include 'footer.php';?>
 </div> 
-
+<?php include 'page_ma.php';?>
 
 </body>
 </html>

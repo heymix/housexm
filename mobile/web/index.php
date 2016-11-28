@@ -173,7 +173,6 @@ function checkbox($title,$type,$cate,$db_name,$con,$char_set,$dateStr){
     return $returnStr;
 }
 ?>
-?>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -242,7 +241,7 @@ function popOpen(id){
 <a href="#" onclick='window.location.href="client_edit.php"' data-role="button">添加客户</a>
 <?php include 'footer.php';?>
 </div> 
-
+<?php include 'page_ma.php';?>
 
 </body>
 </html>

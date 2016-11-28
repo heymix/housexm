@@ -204,11 +204,11 @@ function delPost(id,type){
 						var resultArr=data.split("|");
 						if(resultArr[0]=="1"){
 							alert(resultArr[1]);
-							alert(1);
 							window.location.reload();
 						}
 						else{
 							alert(resultArr[1]);
+							window.location.reload();
 							loading.hide();
 						}	
 				});

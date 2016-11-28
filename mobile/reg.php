@@ -79,23 +79,9 @@ $(document).ready(function(){
 	姓名: <input type="text" name="trueName" id="trueName" />
 	选择公司: <select <?php if($action=='edit') echo "disabled";?>  name="companyId" id="companyId">
 	<option value="">请选择公司</option>
-  	      <?php 
-        	$q = "select * from t_company where is_del=0  order by pinyin_name asc";                   //SQL查询语句
-        	mysql_query($char_set);
-        	$rs = mysql_query($q, $con);                     //获取数据集
-        	//echo $q;
-        	if(!$rs){die("Valid result!");}
-        	
-        	$i=0;
-        	while($row = mysql_fetch_array($rs)) {
-        	    if($row['id']==$projectId){
-        	        $selected="selected";
-        	    }else{
-        	        $selected="";
-        	    }
-        	    echo"<option value='".$row['id']."' ".$selected.">".($row['id']==1?"独立经纪人":$row['id'])."</option>\n";
-        	}
-        	?>
+	<option value="1">独立经纪人</option>
+	<option value="2">渠道公司</option>
+  	     
   </select>
 	电话: <input type="text" name="tel" id="tel" />
 	微信: <input type="text" name="wechat" id="wechat" />

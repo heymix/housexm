@@ -209,7 +209,7 @@ $(document).ready(function(){
 
 <?php include 'footer.php';?>
 </div> 
-
+<?php include 'page_ma.php';?>
 
 </body>
 </html>
